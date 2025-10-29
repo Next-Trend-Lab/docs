@@ -2,7 +2,7 @@
 sidebarTitle: Fork Logic
 ---
 
-# Technical Spec: GitHub Org Integration via GitHub App
+#GitHub 
 
 ## Objective
 

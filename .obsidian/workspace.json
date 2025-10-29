@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/patterns/action-learning.md",
+                "file": "content/processes/ground-potentialising/deploy/forking.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "action-learning"
+              "title": "forking"
             }
           }
         ]
@@ -150,13 +150,23 @@
               "icon": "lucide-list",
               "title": "Outline of index"
             }
+          },
+          {
+            "id": "5494becd62366853",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -172,8 +182,8 @@
   },
   "active": "ef28eafa8cd61b5e",
   "lastOpenFiles": [
-    "OBSIDIAN_SETUP.md",
     "content/patterns/action-learning.md",
+    "OBSIDIAN_SETUP.md",
     "content/patterns/action-learning journeys.md",
     "add.md",
     "content/collaborators/communities-of-place/hub/hub team.md",
