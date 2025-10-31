@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "tag:#Wada",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -180,11 +180,13 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "bce36f6df86b5df2",
+  "active": "ef28eafa8cd61b5e",
   "lastOpenFiles": [
+    "Untitled.canvas",
+    "content/next-trend-event-playbook/index.md",
+    "2025-10-31.md",
     "content/events/index.md",
     "content/context-narrative/index.md",
-    "content/next-trend-event-playbook/index.md",
     "OBSIDIAN_SETUP.md",
     "content/processes/ground-potentialising/deploy/forking.md",
     "content/patterns/action-learning.md",
@@ -206,8 +208,6 @@
     "content/processes/evaluation/1. Our Approach/a. Foundations.md",
     "content/processes/evaluation/Philosophy.md",
     "content/processes/evaluation/2. Our Methodology/index.md",
-    "content/processes/enrolment/Hub Enrollment Form Design.md",
-    "content/next-trend-event-playbook/participants/scribes.md",
     "content/processes/evaluation/3. Resources & Evidence/Accra ALJ Case Study",
     "Pasted image 20250630204615.png",
     "Pasted image 20250630204254.png",
