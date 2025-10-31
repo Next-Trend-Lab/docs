@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/processes/ground-potentialising/deploy/forking.md",
+                "file": "content/next-trend-event-playbook/index.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "forking"
+              "title": "index"
             }
           }
         ]
@@ -180,13 +180,17 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "ef28eafa8cd61b5e",
+  "active": "bce36f6df86b5df2",
   "lastOpenFiles": [
-    "content/patterns/action-learning.md",
+    "content/events/index.md",
+    "content/context-narrative/index.md",
+    "content/next-trend-event-playbook/index.md",
     "OBSIDIAN_SETUP.md",
+    "content/processes/ground-potentialising/deploy/forking.md",
+    "content/patterns/action-learning.md",
     "content/patterns/action-learning journeys.md",
     "add.md",
-    "content/collaborators/communities-of-place/hub/hub team.md",
+    "content/next-trend-event-playbook/communities-of-place/hub/hub team.md",
     "content/processes/evaluation/3. Resources & Evidence/Accra ALJ Case Study/c. Capital Distribution.md",
     "content/processes/evaluation/3. Resources & Evidence/Accra ALJ Case Study/b. Evaluation.md",
     "content/processes/evaluation/3. Resources & Evidence/Accra ALJ Case Study/a. Overview.md",
@@ -203,7 +207,7 @@
     "content/processes/evaluation/Philosophy.md",
     "content/processes/evaluation/2. Our Methodology/index.md",
     "content/processes/enrolment/Hub Enrollment Form Design.md",
-    "content/collaborators/participants/scribes.md",
+    "content/next-trend-event-playbook/participants/scribes.md",
     "content/processes/evaluation/3. Resources & Evidence/Accra ALJ Case Study",
     "Pasted image 20250630204615.png",
     "Pasted image 20250630204254.png",
@@ -215,16 +219,12 @@
     "evaluation day2.jpg",
     "evaluation day1 1.jpg",
     "evaluation day1.jpg",
-    "content/patterns/sociocratic organising.md",
-    "content/patterns/aspects.md",
-    "patterns/action-learning journeys.md",
     "patterns",
-    "index/Our.md",
     "index",
     "public/noah.jpg",
-    "content/collaborators/index.mdx",
-    "content/collaborators/Facilitators/index.mdx",
-    "content/collaborators/Facilitators",
+    "content/next-trend-event-playbook/index.mdx",
+    "content/next-trend-event-playbook/Facilitators/index.mdx",
+    "content/next-trend-event-playbook/Facilitators",
     "content/processes/enrolment/index.mdx",
     "content/collaborators/process-designers/index.mdx",
     "content/collaborators/process-designers"
