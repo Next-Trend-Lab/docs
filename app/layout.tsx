@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { Analytics } from "@vercel/analytics/react";
 import { generateMetadata } from './utils/metadata';
 import { FaXTwitter } from "react-icons/fa6";
-import { FaTelegramPlane, FaGithub } from "react-icons/fa";
+import { FaTelegramPlane, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { BsCalendarWeek } from "react-icons/bs";
 import { ActiveJourneyProvider } from '@/contexts/ActiveJourneyContext'
 
@@ -44,19 +44,20 @@ const OpenCollectiveIcon = ({ style, ...props }: IconProps) => (
 
 const navbar = (
   <Navbar
+  className="bg-white dark:bg-gray-100 px-1 py-4 overflow-hidden"
     logo={
-      <div>
-        <Image src="/prisma-name-text-dark.svg" width={140} height={60} alt="Prisma Logo" />
+      <div >
+        <Image src="/NexTrend_Logo.png" width={140} height={60} alt="Next Trend Logo" priority style={{ maxWidth: '100%', height: 'auto' }} />
       </div>
     }
-    logoLink={"https://www.prisma.events/"}
-    chatIcon={<FaTelegramPlane className={`${iconClasses} ${getRandomHoverColor()}`} />}
-    chatLink={"https://t.me/+9-UF8k9H8dBjNWFk"}
+    logoLink={"/"}
+    chatIcon={<FaWhatsapp className={`${iconClasses} ${getRandomHoverColor()}`} />}
+    chatLink={"https://chat.whatsapp.com/HmGN81m8Rte2lVAuOVfnUi"}
     children={
       <div className="inline-flex items-center gap-4">
         {/* X (Twitter) */}
         <a
-          href="https://twitter.com/__prismaevents"
+          href="https://x.com/nextrendlabs/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -65,7 +66,7 @@ const navbar = (
 
         {/* Open Collective */}
         <a
-          href="https://opencollective.com/prisma-collective"
+          href="/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -74,7 +75,7 @@ const navbar = (
 
         {/* Calendar */}
         <a
-          href="https://lu.ma/prisma"
+          href="https://lu.ma/nextrendlabs"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -82,12 +83,12 @@ const navbar = (
         </a>
       </div>
     }
-    projectLink={"https://github.com/prisma-collective/"}
+    projectLink={"https://github.com/orgs/Next-Trend-Lab/repositories/"}
     projectIcon={<FaGithub className={`${iconClasses} ${getRandomHoverColor()}`} />}
   />
 );
 
-const footer = <Footer>Prisma © {new Date().getFullYear()}</Footer>
+const footer = <Footer>Next Trend Group © {new Date().getFullYear()}</Footer>
 
 export default async function RootLayout({
   children,
@@ -120,7 +121,7 @@ export default async function RootLayout({
         <Layout
           navbar={navbar}
           pageMap={await getPageMap()}
-          docsRepositoryBase="https://github.com/prisma-collective/docs"
+          docsRepositoryBase="https://github.com/Next-Trend-Lab/docs"
           footer={footer}
           sidebar={{ autoCollapse: true, defaultMenuCollapseLevel: 1 }}
           editLink={null}
