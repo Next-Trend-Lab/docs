@@ -11,9 +11,9 @@
       ]
     },
     {
-      "name": "Ayomide O",
+      "name": "Ayomi",
       "role": "Operation Lead",
-      "photo": "/AyomiShuga.jpg",
+      "photo": "/ayomi.jpg",
       "profile_card_link": "/processes/evaluation",
       "links": [
         
@@ -44,6 +44,32 @@
         { "label": "LinkedIn", "url": "https://www.linkedin.com/in/fad-kamarudeen", "icon": "FaLinkedinIn" },
         { "label": "X", "url": "https://x.com/kamarudeen22205", "icon": "FaXTwitter" }
       ]
+    },
+
+    {
+      "name": "Christian",
+      "role": "Finance Manager",
+      "photo": "/chris.jpg",
+      "profile_card_link": "/processes/evaluation",
+      "links": [
+        
+        { "label": "LinkedIn", "url": "https://www.linkedin.com/in/christianamiegbe/", "icon": "FaLinkedinIn" },
+        { "label": "X", "url": "https://x.com/dgrowthadvocate?s=21", "icon": "FaXTwitter" }
+      ]
+    },
+
+    {
+      "name": "Uthman A.A",
+      "role": "Product Designer",
+      "photo": "/usmedia.jpg",
+      "profile_card_link": "/processes/evaluation",
+      "links": [
+        
+        { "label": "LinkedIn", "url": "/", "icon": "FaLinkedinIn" },
+        { "label": "X", "url": "https://x.com/usmediapro/", "icon": "FaXTwitter" }
+      ]
     }
+
+
   ]
   
