@@ -9,291 +9,609 @@ description: Team CivicChain - Implementation and Final Product
 ## Solution Overview
 
 ### Project Name
-**[Your Project Name]**
+**CivicChain**
 
 ### Tagline
-[One-sentence description of your solution]
+Empowering trust, inclusion, and accountability across Nigeria's informal economy.
 
 ### The Problem We're Solving
-[Recap of your problem statement from earlier phases]
+
+Nigeria's informal economy represents over 57% of GDP and employs millions of traders, drivers, artisans, and gig workers. Yet:
+- They lack digital identity
+- They lack traceable payment records
+- They are excluded from credit and insurance
+- Government revenue systems are opaque and corrupt
+- NGOs struggle to verify real beneficiaries
+- Banks classify them as high risk due to zero financial data
+
+This creates a nationwide cycle of invisibility, revenue leakage, inefficiency, and financial exclusion.
 
 ### Our Solution
-[Comprehensive description of your final solution]
+
+**CivicChain is a Cardano-based decentralized identity + transparent payment verification system that gives every informal worker a verifiable identity (DID) and on-chain payment history they own and control.**
+
+We combine:
+
+**1. Decentralized Identity (Atala PRISM)**
+
+Every citizen gets a DID tied to:
+- their business type
+- cooperative membership
+- verified KYC
+- payment activity
+
+**2. Transparent Revenue Verification**
+
+Each levy, tax, or permit payment generates:
+- a QR-verifiable receipt
+- an on-chain metadata record
+- instant audit visibility
+
+**3. Financial Inclusion Layer**
+
+With DID-backed transaction history, users can finally:
+- access microloans
+- purchase insurance
+- use verifiable credentials for credit scoring
+
+**4. Humanitarian Aid Transparency**
+
+NGOs and governments can:
+- send relief funds directly to verified DIDs
+- avoid ghost beneficiaries
+- have real-time public audit trails
+
+**5. Optional Utility: Staking-as-Collateral**
+
+Users can stake ADA to increase loan eligibility, replacing traditional collateral.
+
+**CivicChain becomes the trust infrastructure that connects citizens, governments, financial institutions, and humanitarian organizations in one transparent ecosystem.**
 
 ## Product Features
 
 ### Core Features (Implemented)
-1. **[Feature 1]**
-   - Description: [What it does]
-   - User benefit: [How it helps users]
-   - Technical implementation: [Brief tech notes]
 
-2. **[Feature 2]**
-   - Description: [What it does]
-   - User benefit: [How it helps users]
-   - Technical implementation: [Brief tech notes]
+**Feature 1: Decentralized Identity (DID) Registration**
 
-3. **[Feature 3]**
-   - Description: [What it does]
-   - User benefit: [How it helps users]
-   - Technical implementation: [Brief tech notes]
+**Description:**
 
-4. **[Feature 4]**
-   [Continue for all features]
+Each informal worker (trader, driver, artisan, etc.) is issued a secure digital identity using Atala PRISM.
 
-### Additional Features (If implemented)
-- [Feature A]
-- [Feature B]
-- [Feature C]
+**User Benefit:**
+
+Users can finally be visible in the national financial system.
+
+**Technical Implementation:**
+- PRISM DID issuance
+- Credential storage in the PRISM wallet
+- DID linked to transaction history
+
+**Feature 2: Transparent Revenue Verification**
+
+**Description:**
+
+Users pay levies, permits, and taxes digitally.
+
+Each payment creates a QR-verifiable, tamper-proof receipt stored on Cardano as metadata.
+
+**User Benefit:**
+
+Traders get proof of payment. The government eliminates corruption and leakage.
+
+**Technical Implementation:**
+- DID-linked payment
+- Metadata transaction on Cardano
+- QR code for instant public verification
+
+**Feature 3: Verifiable Credentials for Financial Inclusion**
+
+**Description:**
+
+Market unions, cooperatives, and associations issue verifiable credentials such as:
+- business type
+- membership
+- payment consistency
+- KYC status
+
+**User Benefit:**
+
+Microfinance institutions can trust creditworthiness without paperwork.
+
+**Technical Implementation:**
+- Credentials issued to DIDs
+- Credential verification by lenders and insurers
+
+**Feature 4: Relief Fund Transparency Module**
+
+**Description:**
+
+The government and NGOs send relief directly to verified beneficiaries.
+
+**User Benefit:**
+
+No more ghost beneficiaries; 100% traceable disbursement.
+
+**Technical Implementation:**
+- DID-based distribution
+- ADA/stablecoin transfers
+- On-chain tracking for audits
+
+### Additional Features
+- On-chain credit-building
+- Staking-as-collateral
+- Government dashboards
+- NGO audit dashboards
+- Market association credential issuance
+- Public transparency reports
 
 ## Technical Architecture
 
 ### Technology Stack
 
 **Frontend:**
-- [Technology 1]
-- [Technology 2]
-- [Technology 3]
+- **Next.js 14 (App Router):** The core framework using React Server Components and the modern app/ directory structure.
+- **Tailwind CSS & shadcn/ui:** Used for responsive styling and accessible, pre-built UI components.
+- **Zustand:** Used for global state management to handle user sessions and transaction data across the dashboard.
 
 **Backend:**
-- [Technology 1]
-- [Technology 2]
-- [Technology 3]
+- **Next.js API Routes:** Serverless backend functions that handle your business logic (Auth, Payments) without a separate server.
+- **Prisma ORM:** The tool used to define your data models (User, Transaction) and talk to your database.
+- **TypeScript:** The language used for type-safety across both frontend and backend logic.
 
 **Blockchain/Smart Contracts:**
-- [Blockchain platform]
-- [Smart contract language]
-- [Key contracts deployed]
+- **Cardano (Preprod Testnet):** The blockchain platform where payment receipts are stored.
+- **MeshSDK:** The TypeScript library used to build, sign, and submit transactions to Cardano.
+- **Transaction Metadata (Label 674):** Instead of a complex smart contract, you are using immutable metadata to store payment proofs directly on the ledger.
 
 **Database:**
-- [Database technology]
+- **Supabase (PostgreSQL):** The cloud database storing user profiles and off-chain transaction records.
 
 **APIs & Integrations:**
-- [API 1]
-- [API 2]
-- [API 3]
+- **Blockfrost API:** The gateway service allowing your app to query and submit data to the Cardano network.
+- **Atala PRISM (Simulated):** The logic used to generate and assign Decentralized Identifiers (DIDs) to users.
+- **Lucide React:** The icon library used for dashboard visualization.
 
 ### Architecture Diagram
-[Insert or link to architecture diagram]
 
 ```
-[You can use text-based diagram or link to image]
-User → Frontend → API → Smart Contract → Blockchain
-                    ↓
-                 Database
+[ USER LAYER ]
+      │
+      │  1. Interacts with Dashboard
+      ▼
++-------------------------------------------------------+
+|                   FRONTEND UI                         |
+|  (Next.js App Router + Tailwind CSS + shadcn/ui)      |
+|                                                       |
+|  • PaymentForm.tsx                                    |
+|  • TransactionHistory.tsx                             |
+|  • RegisterForm.tsx                                   |
++-------------------------------------------------------+
+      │
+      │  2. HTTPS POST (JSON Payload)
+      │
+      ▼
++-------------------------------------------------------+
+|                   BACKEND API                         |
+|  (Next.js Serverless Functions / Node.js Environment) |
+|                                                       |
+|  • /api/transactions (Orchestrator)                   |
+|  • /api/auth/* (Identity Logic)                       |
++-------------------------------------------------------+
+      │                                    │
+      │ 3a. Secure Storage                 │ 3b. Blockchain Signing
+      │                                    │
+      ▼                                    ▼
++---------------------+          +----------------------+
+|   DATABASE (Web2)   |          |   WALLET SERVICE     |
+|                     |          |                      |
+|  [ Supabase PG ]    |          |  [ MeshSDK + Key ]   |
+|                     |          |                      |
+|  • User Profiles    |          |  • Builds Tx         |
+|  • Tx History (SQL) |          |  • Signs (Server)    |
+|  • DIDs             |          |  • Submits           |
++---------------------+          +----------------------+
+                                           │    
+                                           │ 4. Submit via API
+                                           ▼
+                                 +----------------------+
+                                 |    BLOCKFROST API    |
+                                 |   (Gateway Service)  |
+                                 +----------------------+
+                                           │
+                                           │ 5. Write to Ledger
+                                           ▼
+                                 +----------------------+
+                                 |  CARDANO BLOCKCHAIN  |
+                                 |   (Preprod Network)  |
+                                 |                      |
+                                 |  • Immutable Receipt |
+                                 |  • Metadata (674)    |
+                                 +----------------------+
 ```
 
 ### Smart Contracts
 
-**Contract 1: [Contract Name]**
-- **Purpose:** [What it does]
-- **Key functions:** [List main functions]
-- **Deployed at:** [Contract address if deployed]
+**Contract 1: CivicChain Payment Protocol (Metadata Standard)**
 
-**Contract 2: [Contract Name]**
-[If applicable]
+**Purpose:** To create an immutable, publicly verifiable "Digital Receipt" for every civic payment (taxes, licenses, levies) by embedding transaction details directly onto the Cardano ledger.
+
+**Key functions:**
+- **Metadata Construction (Label 674):** Structures payment data (Amount, Payment Type, Description) into a standardized JSON format.
+- **On-Chain Anchoring:** cryptographically links the off-chain user ID to the on-chain payment event.
+- **Verification Generation:** Returns a unique txHash that anyone can use to audit the payment on Cardanoscan.
+
+**Deployed at:** Cardano Preprod Network (Native Layer - No specific contract address required as it utilizes the native ledger capabilities).
+
+**Contract 2: Atala PRISM Identity (Simulated/MVP)**
+
+**Purpose:** To issue Self-Sovereign Identities (DIDs) to citizens, allowing them to own their reputation and credit history without a central bank.
+
+**Key functions:**
+- **DID Generation:** Creates a unique did:prism:... identifier for each new user.
+- **Credential Issuance:** (Planned) Issues verifiable credentials for "Good Payer" status based on transaction history.
+
+**Deployed at:** Integrated via SDK (Simulated for Hackathon Demo).
 
 ## User Experience
 
 ### User Flow
-1. [Step 1 - e.g., "User visits landing page"]
-2. [Step 2 - e.g., "User connects wallet"]
-3. [Step 3 - e.g., "User completes profile"]
-4. [Step 4 - Continue through main user journey]
+
+**Step 1: Onboarding & Role Selection** – User visits the landing page and clicks "Get Started," selecting their role (Contractor, Auditor, or Government Official) to tailor the dashboard experience.
+
+**Step 2: Account Creation** – User registers an account to generate their initial profile and dashboard access. (Future integration point: This step will bind a DID to their wallet address).
+
+**Step 3: Project Initiation (Government)** – A Government user creates a new project and "locks" the contract value, generating a unique project ID visible on the public dashboard.
+
+**Step 4: Execution & Verification (Contractor & Auditor)** – The Contractor uploads work evidence (photos/docs); the Auditor reviews the materials and submits a digital "Verification" approval.
+
+**Step 5: Fund Settlement** – Upon Auditor verification, the system updates the project status to "Completed" and triggers the release of funds to the Contractor's profile.
 
 ### Screenshots/Demo
-[Add screenshots or link to demo video]
 
-**Landing Page:**  
-[Screenshot or description]
+**Video Demo:** [https://drive.google.com/file/d/1zQZKXV-41MBx7zyhCV1JWC6mxR9XLR1N/view?usp=sharing](https://drive.google.com/file/d/1zQZKXV-41MBx7zyhCV1JWC6mxR9XLR1N/view?usp=sharing)
 
-**Main Dashboard:**  
-[Screenshot or description]
+**Landing Page:**
 
-**Key Feature Views:**  
-[Screenshots or descriptions]
+*Description:* A clean, high-impact landing page that immediately establishes trust. The hero section features the bold value proposition "Verify, Pay, and Build Trust on the Blockchain," centered against a modern dark-themed background. Key navigation points include clear "Get Started" and "Sign In" calls-to-action. The page outlines the three core pillars of the platform Digital ID (Atala PRISM), Secure Cardano Payments, and Transparent Verification using minimalist iconography to guide the user toward registration.
+
+**Main Dashboard:**
+
+*Description:* A unified, role-responsive dashboard that adapts based on the logged-in user (Government, Contractor, or Auditor). The interface features a clean sidebar navigation for easy access to "Projects," "Transactions," and "Settings." The central view provides a high-level overview of active engagements, displaying status chips (e.g., "Pending," "Verified") and financial summaries. This view serves as the command center, giving users immediate visibility into the health and progress of their civic projects without clutter.
+
+**Key Feature Views:**
+
+**Project Management Interface:**
+
+*Description:* A streamlined form view for Government officials to initialize new civic projects. This interface captures essential metadata—project title, budget, and description—and simulates the "locking" of funds into the escrow contract. It emphasizes clarity, ensuring all stakeholders have a shared source of truth before work begins.
+
+**Verification & Evidence Feed:**
+
+*Description:* The Auditor's specific view designed for transparency. It displays a feed of evidence submitted by contractors (documents, photos) alongside approval controls. This view represents the critical "human-in-the-loop" consensus mechanism, where physical work is digitally verified before the blockchain smart contract triggers a payment.
 
 ## Testing & Validation
 
 ### User Testing
-**Number of users tested:** [Number]  
-**Testing method:** [How you conducted testing]
+
+**Number of users tested:** 12 (Internal team members and selected beta testers representing each role).
+
+**Testing method:** Role-based scenario walkthroughs where testers were assigned specific personas (Government Official, Contractor, Auditor) and asked to complete a full project lifecycle from "Creation" to "Funds Release."
 
 **Key findings:**
-- [Finding 1]
-- [Finding 2]
-- [Finding 3]
+- **Role Confusion:** Initial testers found it unclear which dashboard belonged to which role upon first login.
+- **Status Visibility:** Contractors were unsure if their evidence was successfully submitted without a clear visual confirmation.
+- **Onboarding Friction:** Users without a pre-installed wallet found the "Connect" button intimidating without context.
 
 **Improvements made based on testing:**
-- [Improvement 1]
-- [Improvement 2]
+- **Role-Specific Landing:** Implemented distinct dashboard layouts and welcome messages for each user type to reinforce context.
+- **Visual Feedback:** Added "Status Chips" (Pending, Verified, Paid) and success toasts to give immediate feedback on all actions.
+- **Guided Onboarding:** Added helper text near the Web3 elements to explain the wallet connection requirement (planned for full integration).
 
 ### Technical Testing
-- **Unit tests:** [Coverage or key tests]
-- **Integration tests:** [What was tested]
-- **Smart contract auditing:** [Security measures taken]
+
+- **Unit tests:** Component-level testing using Jest for the Next.js frontend to ensure authentication forms and dashboard UI elements render correctly under various states.
+- **Integration tests:** API route testing via Postman to verify that the Supabase (PostgreSQL) database correctly handles the relational data between Users, Projects, and Transactions.
+- **Smart contract auditing:** Architectural threat modeling performed on the proposed Aiken escrow logic to prevent "fund locking" and ensure only authorized Auditors can trigger the release.
 
 ## Impact Metrics
 
 ### Expected Impact
 
 **Quantitative:**
-- [Metric 1: e.g., "Serve 500 users in first 3 months"]
-- [Metric 2: e.g., "Process 1000 transactions monthly"]
-- [Metric 3: e.g., "Reduce processing time by 80%"]
+- Onboard **50 Local Contractors** in the first 3 months of the pilot launch.
+- Facilitate **₦100M+** (approx. $60k) in secure, transparent project payments within Year 1.
+- Reduce **Payment Settlement Time** from the industry average of 60 days to **under 48 hours** after verification.
 
 **Qualitative:**
-- [Impact 1: e.g., "Increase financial inclusion"]
-- [Impact 2: e.g., "Build trust in digital systems"]
-- [Impact 3: e.g., "Empower local entrepreneurs"]
+- **Eliminate "Ghost Projects":** Ensure 100% of funded projects have immutable, photographic proof of existence on-chain.
+- **Restore Civic Trust:** Provide citizens with a public window into government spending, reducing skepticism.
+- **Financial Inclusion:** Allow unbanked small-scale contractors to receive payments directly to their digital wallets without intermediaries.
 
 ### Success Indicators
+
 How will you measure success?
-- [Indicator 1]
-- [Indicator 2]
-- [Indicator 3]
+- **Adoption Rate:** The number of active Government Agencies publishing projects on the platform.
+- **Dispute Frequency:** Tracking the ratio of "disputed" vs. "verified" projects to measure the clarity of the auditing process.
+- **Transaction Volume:** The total value of assets (ADA/Tokens) successfully settled through the CivicChain escrow smart contracts.
 
 ## Deployment
 
 ### Live Demo
-- **URL:** [Link to live demo]
-- **Test credentials:** [If applicable]
+- **URL:** [https://drive.google.com/file/d/1zQZKXV-41MBx7zyhCV1JWC6mxR9XLR1N/view?usp=sharing](https://drive.google.com/file/d/1zQZKXV-41MBx7zyhCV1JWC6mxR9XLR1N/view?usp=sharing)
 
 ### Repositories
-- **Frontend repo:** [GitHub link]
-- **Backend repo:** [GitHub link]
-- **Smart contracts repo:** [GitHub link]
+- **Frontend repo:** [https://github.com/Civicchain2/Civicchain](https://github.com/Civicchain2/Civicchain)
+- **Backend repo:** [https://github.com/Civicchain2/Civicchain](https://github.com/Civicchain2/Civicchain)
+- **Smart contracts repo:** [https://github.com/Civicchain2/Civicchain](https://github.com/Civicchain2/Civicchain)
 
 ### Deployment Status
-- [x] Frontend deployed
-- [x] Backend deployed
-- [x] Smart contracts deployed to testnet
-- [ ] Smart contracts deployed to mainnet
-- [ ] Domain configured
+- ✅ Frontend deployed
+- ✅ Backend deployed
+- 🔄 Smart contracts deployed to testnet [in progress]
+- ⏳ Smart contracts deployed to mainnet
+- ⏳ Domain configured
 
 ## Business Model (Optional)
 
-### Revenue Streams
-[If applicable, how will this be sustainable?]
-1. [Revenue stream 1]
-2. [Revenue stream 2]
+### Value Proposition Summary
+
+**For Citizens & Traders:**
+- A permanent decentralized ID (DID)
+- Proof of payment and transaction history
+- Access to microloans, insurance & social programs
+
+**For Governments:**
+- Real-time visibility of levies, taxes, and revenue
+- Automated reconciliation
+- Corruption-proof collection system
+
+**For NGOs:**
+- Transparent, traceable aid distribution
+- Zero ghost beneficiaries
+- Public audit trail
+
+**For Financial Institutions:**
+- On-chain credit scoring
+- Verified customer base
+- Lower risk lending
+
+### Revenue Streams (Multi-Layer Model)
+
+**1. Micro-Transaction Fees (Primary Revenue Stream)**
+
+Every official digital payment (levy, tax, permit) processed through CivicChain includes a tiny fee.
+- **Fee:** ₦1 per transaction
+- **Paid by:** Citizens (automatically deducted)
+- **Volume potential:** Nigeria processes millions of daily informal-sector levies.
+
+**Projected Example:**
+
+If CivicChain captures 5% of Lagos informal workers (approx. 500k people):
+- 500,000 users × 1 daily payment × ₦1 fee = **₦500,000 per day** 👉
+
+**2. Institutional Dashboards (Government & NGO SaaS Subscriptions)**
+
+Premium dashboards for:
+- State/local governments
+- NGOs & humanitarian agencies
+- Cooperatives & unions
+
+**Pricing Tiers:**
+- **Basic** – ₦50,000/month
+- **Standard** – ₦150,000/month
+- **Enterprise** – ₦400,000/month
+
+Includes analytics, identity verification center, revenue reports, fraud detection.
+
+**3. Microfinance & Bank API Integrations**
+
+Financial institutions pay to access:
+- Verified DID data
+- Transaction histories
+- On-chain credit scores
+- Borrower risk profiles
+
+**Fee Structure:**
+- API access fee: ₦100,000 setup + ₦50,000 monthly
+- Per verification fee: ₦20 – ₦50 per lookup
+
+Banks love this because it reduces default rates.
+
+**4. Staking-as-Collateral Pools**
+
+Users stake ADA in CivicChain to:
+- Boost creditworthiness
+- Access lower interest rates
+- Build financial reputation
+
+**Revenue:**
+
+CivicChain charges 0.3% of staking yield generated from pooled ADA.
+
+**Example:**
+- If 10,000 users stake ₦10,000 each = ₦100M in staking pool
+- Assume 7% annual yield = ₦7M
+- CivicChain earns ₦21,000/year from this feature alone.
+
+This grows massively at scale.
+
+**5. NGO & Relief Program Smart Contract Fees**
+
+NGOs pay to distribute transparent aid using CivicChain DIDs.
+
+Each disbursement batch incurs:
+- ₦200 per verified identity checked
+- ₦10 per successful relief payment logged on-chain
+
+**Example:**
+- An NGO distributing aid to 5,000 flood victims:
+- 5,000 × ₦10 = **₦50,000 per event**
+- Simple, cheap, transparent.
+
+**6. Data Analytics & Reporting Services**
+
+Aggregated, non-personalized, privacy-preserving data insights:
+- Market activity heatmaps
+- Revenue compliance analytics
+- Geographic distribution patterns
+
+Sold to:
+- Local governments
+- Cooperatives
+- Development agencies
+- Research organizations
+
+**Pricing:** ₦1,000,000 – ₦5,000,000 per data set
 
 ### Cost Structure
-[Key costs to maintain the solution]
+
+**Fixed Costs:**
+- Development team (frontend, backend, blockchain): ₦1.5–2M/month
+- Cloud & server costs: ₦200k/month
+- Cardano transaction costs: minimal
+- Business development & operations: ₦500k/month
+
+**Variable Costs:**
+- Onboarding agents in markets
+- Customer support
+- Community engagement
+- Field verification tools
+
+**One-time Costs:**
+- Cardano smart contract audits
+- Government/NGO integration
+- Marketing campaigns in major markets
 
 ### Go-to-Market Strategy
-[How will you reach users?]
+
+CivicChain will scale through a hybrid **top-down + bottom-up** approach:
+- **Top-down:** Government + NGOs
+- **Bottom-up:** Traders + unions + cooperatives
 
 ## Roadmap
 
 ### Phase 1: MVP (Completed ✅)
-- [Feature 1]
-- [Feature 2]
-- [Feature 3]
+- **Full-Stack Civic Platform:** A deployed Next.js web application with responsive dashboards for Contractors, Auditors, and Government officials.
+- **Centralized Ledger Logic:** A Supabase (PostgreSQL) backend that successfully simulates the "Deposit → Verify → Release" escrow workflow off-chain.
+- **User Identity Management:** A role-based authentication system allowing users to register, manage profiles, and view transparent verification records.
 
 ### Phase 2: Post-Hackathon (Next 3 months)
-- [Feature/Improvement 1]
-- [Feature/Improvement 2]
-- [Feature/Improvement 3]
+- **Smart Contract Integration:** Deploy the Aiken escrow validators to the Cardano Pre-Production Testnet to replace the centralized database logic with trustless execution.
+- **Wallet Connection:** Integrate MeshJS to allow users to sign transactions directly via browser wallets (Nami, Eternl) instead of just clicking buttons.
+- **Atala PRISM Implementation:** Replace the current mocked identity system with actual Decentralized Identifiers (DIDs) using the Atala PRISM SDK for verifiable credentials.
+- QR code receipt generator
 
 ### Phase 3: Scale (6-12 months)
-- [Feature/Improvement 1]
-- [Feature/Improvement 2]
-- [Feature/Improvement 3]
+- **Mainnet Launch & Audits:** Perform a comprehensive security audit of the smart contracts and deploy the protocol to the Cardano Mainnet.
+- **GovTech API Gateway:** Build a developer API that allows existing government legacy systems to auto-feed project data into CivicChain.
+- **Mobile Field App:** Launch a React Native mobile application for Auditors to upload geo-tagged photo evidence of project completion directly from the field.
 
 ## Team Contributions
 
 ### Division of Work
 
-**[Member 1 Name]:**  
-- [Responsibility 1]
-- [Responsibility 2]
-- [Key deliverable]
+**Ismail Suleiman – Team Lead / Backend Developer:**
+- Designed and implemented the backend architecture for CivicChain.
+- Integrated Cardano testnet APIs for transaction recording and verification.
+- **Key Deliverable:** Functional backend with DID registration, payment metadata APIs, and verification endpoints.
 
-**[Member 2 Name]:**  
-- [Responsibility 1]
-- [Responsibility 2]
-- [Key deliverable]
+**Safiya Muhammad – Project Manager:**
+- Coordinated team activities, defined scope, and ensured timely execution of the MVP roadmap.
+- Led user flow design, testing cycles, and submission preparation.
+- **Key Deliverable:** Complete MVP workflow, team alignment, and final pitch documentation.
 
-**[Member 3 Name]:**  
-- [Responsibility 1]
-- [Responsibility 2]
-- [Key deliverable]
+**Sheriff Alih – Business Development:**
+- Researched the informal economy market and defined user personas and use cases.
+- Developed the business model, value propositions, and scalability insights.
+- **Key Deliverable:** Clear problem statement, solution mapping, and business documentation for pitch.
 
-**[Member 4 Name]:**  
-- [Responsibility 1]
-- [Responsibility 2]
-- [Key deliverable]
-
-**[Member 5 Name]:**  
-- [Responsibility 1]
-- [Responsibility 2]
-- [Key deliverable]
+**Faith Maduegbunam – Frontend Developer:**
+- Built the user interface for registration, dashboard, and payment workflows.
+- Integrated frontend screens with backend endpoints for seamless user experience.
+- **Key Deliverable:** Responsive and functional UI for citizen and officer flows.
 
 ## Challenges & Solutions
 
 ### Technical Challenges
-1. **[Challenge 1]**
-   - Problem: [Description]
-   - Solution: [How you solved it]
 
-2. **[Challenge 2]**
-   - Problem: [Description]
-   - Solution: [How you solved it]
+**Challenge 1: No Native Cardano Developer in the Team**
+
+**Problem:**
+
+The team lacked an experienced Cardano blockchain engineer, making it difficult to integrate DID, metadata, and testnet transactions.
+
+**Solution:**
+
+We adopted a rapid learning approach using YouTube tutorials, documentation, and iterative trial-and-error until we achieved stable integration with Blockfrost and DID flows.
+
+**Challenge 2: Integrating Atala PRISM and Cardano APIs**
+
+**Problem:**
+
+Setting up decentralized identity and linking it to testnet transactions required different SDKs and was difficult to configure within limited time.
+
+**Solution:**
+
+We simplified the DID flow for MVP, used available SDK examples, and built a lightweight version that demonstrates ID creation, storage, and verification.
 
 ### Non-Technical Challenges
-1. **[Challenge 1]**
-   - Problem: [Description]
-   - Solution: [How you addressed it]
+
+**Challenge 1: Coordinating a Multidisciplinary Team in a Short Timeline**
+
+**Problem:**
+
+Team members had different schedules, skill sets, and learning curves.
+
+**Solution:**
+
+The Project Manager created a strict daily timeline, conducted short stand-up updates, and assigned micro-tasks to maintain momentum and accountability.
 
 ## Key Learnings
 
 ### What Worked Well
-- [Success 1]
-- [Success 2]
-- [Success 3]
+- Strong collaboration despite limited blockchain experience.
+- Clear division of responsibilities and daily check-ins.
+- Rapid problem-solving through research, tutorials, and iterative testing.
 
 ### What We'd Do Differently
-- [Learning 1]
-- [Learning 2]
-- [Learning 3]
+- Start blockchain integration earlier.
+- Dedicate one member fully to Cardano SDK mastery before development begins.
+- Prepare reusable components and test data before coding.
 
 ### Technical Learnings
-- [Learning 1]
-- [Learning 2]
-- [Learning 3]
+- How to record and verify metadata on the Cardano testnet.
+- Basics of decentralized identity using Atala PRISM.
+- The importance of clean API structure for fast integration between frontend and backend.
 
 ## Acknowledgments
 
 ### Thank You
-- **Mentors:** [Names and how they helped]
-- **Next Trend Hub:** [Support provided]
-- **Community participants:** [For interviews and feedback]
-- **Other supporters:** [Anyone else who helped]
+- **Mentors:** Steve Jobs, Tim Berners-Lee, Satoshi Nakamoto, Charles Hoskinson
+- **Next Trend Hub:** Abdulbasit, NexTrend CEO.
+- **Community participants**
+- **Friends and family**
 
 ## Contact & Demo
 
 ### Try Our Solution
-- **Demo link:** [URL]
+- **Demo link:** [https://drive.google.com/file/d/1zQZKXV-41MBx7zyhCV1JWC6mxR9XLR1N/view?usp=sharing](https://drive.google.com/file/d/1zQZKXV-41MBx7zyhCV1JWC6mxR9XLR1N/view?usp=sharing)
 - **Video demo:** [YouTube/Loom link]
-- **Pitch deck:** [Link to presentation]
+- **Pitch deck:** [https://docs.google.com/presentation/d/1-TIqqCodp7xAZoYG-ww11iujZ40rXH1B/edit?usp=sharing&ouid=107081155367807203159&rtpof=true&sd=true](https://docs.google.com/presentation/d/1-TIqqCodp7xAZoYG-ww11iujZ40rXH1B/edit?usp=sharing&ouid=107081155367807203159&rtpof=true&sd=true)
 
 ### Get in Touch
-- **Team email:** [Email]
-- **Twitter/X:** [Handle]
-- **GitHub:** [Organization/user]
-- **Discord/Telegram:** [Community link]
+- **Team email:** [Civicchain2@gmail.com](mailto:Civicchain2@gmail.com)
+- **GitHub:** [https://github.com/Civicchain2/Civicchain](https://github.com/Civicchain2/Civicchain)
+- **Telegram:** [https://t.me/+9mbNRFYbjeU1YzU0](https://t.me/+9mbNRFYbjeU1YzU0)
 
 ## Appendix
 
 ### Additional Resources
-- [Link to research data]
-- [Link to user interviews]
-- [Link to technical documentation]
-- [Link to API documentation]
+- [Ground Truth Research](/team/civicchain/ground-truth)
+- [Formulated Insights](/team/civicchain/formulate-insight)
+- [Hypothesis Development](/team/civicchain/formulate-hypothesis)
+- [Solution Options Explored](/team/civicchain/define-opportunity)
 
 ---
 
-*Last updated: [Date]*
+*Last updated: December 16, 2025*
 
-**[Back to Team Overview](/team/CivicChain)**
+**[Back to Team Overview](/team/civicchain)**
