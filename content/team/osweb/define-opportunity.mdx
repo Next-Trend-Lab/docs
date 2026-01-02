@@ -1,138 +1,159 @@
 ---
 title: Define Opportunity
 sidebarTitle: Define Opportunity
-description: Team OSWEB - Solution Options Explored
+description: Solution exploration for AgriDatum
 ---
 
 # Define Opportunity: Solution Exploration
 
 ## Objective
-Identify and document multiple feasible solutions that address the discovered problems before selecting a final project path.
+
+Identify and document multiple feasible solutions that address the problem of unreliable, unverified agricultural data before selecting a final project path.
 
 ## Problem Recap
 
-**Our Problem Statement:**  
-[Copy your final problem statement from the previous phase]
+Smallholder farmers and NGOs struggle with unreliable, unverified agricultural data, resulting in mistrust, poor decision-making, and limited access to essential support.
 
-[Link to Hypothesis](/team/OSWEB/formulate-hypothesis)
+[Link to Hypothesis](/team/osweb/formulate-hypothesis)
 
 ## Solution Brainstorming
 
 ### Brainstorming Session Notes
-**Date:** [Date]  
-**Participants:** [Team members present]  
-**Duration:** [Time spent]
 
-**Ideas generated:** [Total number of ideas]
+**Date:** 18 November 2025  
+**Participants:** Full Team OSWEB  
+**Duration:** 1 hour 45 minutes  
+**Ideas generated:** 5 ideas (refined to 3 for deeper evaluation)
 
 ## Solution Options
 
-### Solution Option 1: [Solution Name]
+### Solution Option 1: AgriDatum – AI-Powered Agricultural Activity Platform (Primary)
 
-**Description:**  
-[Detailed description of this solution approach]
+**Description:**
 
-**How it addresses the problem:**  
-[Explanation of how this solves the identified problem]
+A mobile-friendly, AI-assisted activity tracking platform where farmers record harvest data, planting schedules, and farming activities. The system stores verifiable data on Cardano and offers an AI assistant for basic farming support like market prices, planting tips, and weather-based irrigation guidance.
 
-**Key Features:**
-- [Feature 1]
-- [Feature 2]
-- [Feature 3]
-- [Feature 4]
+**How it addresses the problem:**
 
-**Technology Stack:**
-- [Technology 1]
-- [Technology 2]
-- [Technology 3]
-
-**Pros:**
-- ✅ [Advantage 1]
-- ✅ [Advantage 2]
-- ✅ [Advantage 3]
-
-**Cons:**
-- ❌ [Disadvantage 1]
-- ❌ [Disadvantage 2]
-- ❌ [Disadvantage 3]
-
-**Feasibility Score:** [X/10]  
-**Impact Score:** [X/10]  
-**Innovation Score:** [X/10]
-
----
-
-### Solution Option 2: [Solution Name]
-
-**Description:**  
-[Detailed description of this solution approach]
-
-**How it addresses the problem:**  
-[Explanation]
+AgriDatum provides farmers with a simple tool to capture and validate their farm activities in real-time, creating a reliable digital proof of their work. This enables NGOs, buyers, and cooperatives to trust the data and make informed decisions without relying on paper trails or hearsay.
 
 **Key Features:**
-- [Feature 1]
-- [Feature 2]
-- [Feature 3]
-- [Feature 4]
+
+1. Farmer onboarding with unique digital ID
+2. Harvest data recording stored immutably on Cardano
+3. AI farming assistant for market prices, planting tips, irrigation guidance, and pest alerts
+4. NGO dashboard for activity tracking and resource distribution verification
+5. Record viewing, downloading, and sharing capabilities for farmers
 
 **Technology Stack:**
-- [Technology 1]
-- [Technology 2]
-- [Technology 3]
+
+- **Frontend:** React.js with Tailwind CSS
+- **Backend:** Node.js with Express
+- **Blockchain:** Cardano (Aiken, BlockFrost, sha256, ed25519)
+- **AI:** Fine-tuned Gemini Model (trained on African agricultural datasets)
+- **Database:** PostgreSQL with off-chain indexing
 
 **Pros:**
-- ✅ [Advantage 1]
-- ✅ [Advantage 2]
-- ✅ [Advantage 3]
+
+- Simple for farmers with low digital literacy
+- Supports multiple stakeholders (farmers, NGOs, buyers, extension workers)
+- Creates a digital identity and work history for farmers
+- AI-driven insights add immediate value
 
 **Cons:**
-- ❌ [Disadvantage 1]
-- ❌ [Disadvantage 2]
-- ❌ [Disadvantage 3]
 
-**Feasibility Score:** [X/10]  
-**Impact Score:** [X/10]  
-**Innovation Score:** [X/10]
+- Requires farmer training for initial adoption
+- Dependent on device access and connectivity
+- Farmers may be hesitant to share data if not immediately beneficial
 
----
+**Feasibility Score:** 9/10  
+**Impact Score:** 10/10  
+**Innovation Score:** 8/10  
+**Total:** 27/30
 
-### Solution Option 3: [Solution Name]
+### Solution Option 2: AgriMatrix – Transparency & Matchmaking Bridge
 
-**Description:**  
-[Detailed description of this solution approach]
+**Description:**
 
-**How it addresses the problem:**  
-[Explanation]
+A matchmaking platform that connects verified farmers with NGOs, buyers, and support organizations. Farmers submit their data once and receive visibility through automated matchmaking with organizations looking for specific agricultural outputs or support recipients.
+
+**How it addresses the problem:**
+
+AgriMatrix solves the issue of misinformation and mistargeting by verifying farmer profiles and automatically connecting them to the right opportunities based on their crops, yields, and location.
 
 **Key Features:**
-- [Feature 1]
-- [Feature 2]
-- [Feature 3]
-- [Feature 4]
+
+1. Farmer profile with verified farm data
+2. Matchmaking engine for NGOs, buyers, and input suppliers
+3. Opportunity board for grants, markets, and training programs
+4. Automated notifications for relevant opportunities
+5. Transparent communication hub between parties
 
 **Technology Stack:**
-- [Technology 1]
-- [Technology 2]
-- [Technology 3]
+
+- **Backend:** Node.js, PostgreSQL
+- **Geo-Mapping:** OpenStreetMap API
+- **Matching Engine:** AI recommendation algorithm
+- **Notifications:** SMS & email gateway
 
 **Pros:**
-- ✅ [Advantage 1]
-- ✅ [Advantage 2]
-- ✅ [Advantage 3]
+
+- Addresses market access and visibility gaps
+- Low-burden experience for farmers
+- Strong appeal to NGOs and cooperatives
 
 **Cons:**
-- ❌ [Disadvantage 1]
-- ❌ [Disadvantage 2]
-- ❌ [Disadvantage 3]
 
-**Feasibility Score:** [X/10]  
-**Impact Score:** [X/10]  
-**Innovation Score:** [X/10]
+- Focuses on matchmaking rather than core data verification
+- Requires partnerships for full utility
+- Value depends on the size of the partner network
 
----
+**Feasibility Score:** 7/10  
+**Impact Score:** 9/10  
+**Innovation Score:** 9/10  
+**Total:** 25/30
 
-[Add more solution options as needed]
+### Solution Option 3: VeriFarm – Predictive Advisory & Insights
+
+**Description:**
+
+A lightweight insights tool that analyzes farmer activities to offer predictive recommendations such as optimal planting dates, expected yields, pest outbreak alerts, and water needs. Data is not stored on blockchain but is aggregated and analyzed for actionable farming predictions.
+
+**How it addresses the problem:**
+
+VeriFarm addresses decision-making gaps by turning existing farmer observations into predictive insights, helping them avoid crop losses and improve productivity.
+
+**Key Features:**
+
+1. Weather integration for seasonal forecasts
+2. Pest and disease prediction alerts
+3. Planting and harvesting recommendations
+4. Crop yield estimations based on historical inputs
+5. SMS-based delivery for low-connectivity areas
+
+**Technology Stack:**
+
+- **Backend:** Python (Flask)
+- **AI/ML:** TensorFlow Lite for lightweight models
+- **Weather API:** OpenWeatherMap
+- **Data Delivery:** SMS via Twilio, USSD
+
+**Pros:**
+
+- Immediate value for farmers through actionable advice
+- Low technical requirements
+- Strong differentiation through prediction features
+
+**Cons:**
+
+- Limited focus on verification or transparency
+- Requires large datasets to train predictive models effectively
+- Less direct benefit for NGOs and buyers
+
+**Feasibility Score:** 6/10  
+**Impact Score:** 8/10  
+**Innovation Score:** 10/10  
+**Total:** 24/30
 
 ## Evaluation Criteria
 
@@ -140,62 +161,61 @@ Identify and document multiple feasible solutions that address the discovered pr
 
 | Solution | Feasibility | Impact | Innovation | Total |
 |----------|-------------|--------|------------|-------|
-| Option 1 | [Score]/10  | [Score]/10 | [Score]/10 | [Total]/30 |
-| Option 2 | [Score]/10  | [Score]/10 | [Score]/10 | [Total]/30 |
-| Option 3 | [Score]/10  | [Score]/10 | [Score]/10 | [Total]/30 |
+| Option 1: AgriDatum | 9/10 | 10/10 | 8/10 | 27/30 |
+| Option 2: AgriMatrix | 7/10 | 9/10 | 9/10 | 25/30 |
+| Option 3: VeriFarm | 6/10 | 8/10 | 10/10 | 24/30 |
 
 ### Evaluation Factors
 
-**Feasibility** - Can we build this in the hackathon timeframe?  
-**Impact** - How many people will benefit? How significant is the benefit?  
-**Innovation** - How novel is this approach? Does it use emerging tech effectively?
+**Feasibility:** Can we build this in the hackathon timeframe?  
+**Impact:** How many people will benefit? How significant is the benefit?  
+**Innovation:** How novel is this approach? Does it use emerging tech effectively?
 
 ## Selected Solution
 
-### Our Choice: [Selected Solution Name]
+### Our Choice: AgriDatum – AI-Powered Agricultural Activity Platform (Option 1)
 
-**Reason for selection:**  
-[Explain why your team selected this solution over the others]
+**Reason for selection:**
+
+AgriDatum tackles the core issue of data reliability and verification, making it the most aligned solution to our problem statement. It is feasible to implement within the hackathon timeline, offers immediate value to farmers through the AI assistant, and has strong adoption potential due to its simplicity.
 
 **Key decision factors:**
-1. [Factor 1]
-2. [Factor 2]
-3. [Factor 3]
+
+1. Directly addresses data verification and trust issues
+2. Highly feasible to implement in 5 weeks
+3. Multi-stakeholder benefit (farmers, NGOs, buyers)
 
 **Trade-offs accepted:**
-- [Trade-off 1]
-- [Trade-off 2]
+
+1. Reliance on device access and connectivity
+2. Need for farmer onboarding and training
 
 **Mitigation strategies for cons:**
-- [How you'll address disadvantage 1]
-- [How you'll address disadvantage 2]
+
+1. Partner with NGOs and extension workers for farmer training
+2. Design for offline-first data entry with sync when online
+3. Build trust by demonstrating immediate value through the AI assistant
 
 ## Implementation Roadmap
 
 ### Phase 1: MVP (Minimum Viable Product)
-**Timeline:** [Timeframe]  
-**Features:**
-- [Core feature 1]
-- [Core feature 2]
-- [Core feature 3]
 
-### Phase 2: Enhancement (If time permits)
-**Timeline:** [Timeframe]  
 **Features:**
-- [Enhanced feature 1]
-- [Enhanced feature 2]
 
-### Phase 3: Future Vision (Post-Hackathon)
+1. Farmer onboarding with harvest data stored on Cardano
+2. AI farming assistant for market prices, planting tips, and basic guidance
+3. Record viewing and downloading capability for farmers
+4. Simple, mobile-friendly interface with seamless signup
+
+### Phase 2: Enhancement (Post-MVP)
+
 **Features:**
-- [Future feature 1]
-- [Future feature 2]
-- [Future feature 3]
+
+1. NGO dashboard for tracking farmer activities and impact measurement
+2. Enhanced AI with more detailed advisory on pest management, irrigation, and yield prediction
+3. Basic IoT sensor integration (soil moisture, weather stations)
 
 ## Next Steps
 
-1. Document the journey and reflections: [Journey Stories](/team/OSWEB/journey)
-2. Build and document final solution: [Final Solution](/team/OSWEB/final-solution)
-
----
-
-*Last updated: [Date]*
+1. Document the journey and reflections: [Journey Stories](/team/osweb/journey)
+2. Build and document final solution: [Final Solution](/team/osweb/final-solution)

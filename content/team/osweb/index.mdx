@@ -1,7 +1,7 @@
 ---
 title: Team OSWEB
 sidebarTitle: Overview
-description: Team OSWEB - CATS Hackathon Documentation
+description: AgriDatum - AI-powered blockchain platform for farmers
 ---
 
 # Team OSWEB
@@ -10,41 +10,176 @@ Welcome to Team OSWEB's documentation hub for the CATS Hackathon at Next Trend H
 
 ## Team Members
 
-List your 5 team members here:
+**Dominion Ekpuk** - Frontend & Blockchain Developer (Team Lead)
 
-1. **[Member Name]** - [Role/Responsibility]
-2. **[Member Name]** - [Role/Responsibility]
-3. **[Member Name]** - [Role/Responsibility]
-4. **[Member Name]** - [Role/Responsibility]
-5. **[Member Name]** - [Role/Responsibility]
+Coordinates the technical direction of the project, leads the development process, implements the frontend interface and handles the end to end Cardano integration.
+
+**Glory Archibong** - Project Manager
+
+Oversees project planning, team coordination, research, and ensures alignment with farmers' real needs.
+
+**Favour Sunday** - Backend & Blockchain Developer
+
+Builds and maintains the backend system, handles server-side logic, and also manages Cardano integration on the backend.
+
+**Peace Essien** - UI/UX Designer
+
+Designs the user experience, landing page, and AgricDatum's visual identity, ensuring the product is intuitive and friendly for farmers.
+
+**Ola** - Community Liaison / Field Research Lead
+
+Connects directly with farmers, documents real experiences, and ensures the platform aligns with their workflows and day-to-day realities.
 
 ## Project Overview
 
 ### Problem Statement
-[Briefly describe the problem your team is addressing]
+
+Farmers struggle with unreliable, unverified, and inconsistent agricultural data. Most records yields, inputs, soil health, and harvests are manual and easily manipulated. This leads to fraud, unfair pricing, low trust, and difficulty accessing loans, support from NGOs, insurance, and credible markets. Because data cannot be proven or traced, honest farmers are disadvantaged and the entire agricultural value chain suffers from inefficiency and exploitation.
+
+AgriDatum restores trust and transparency by recording and verifying farm data on-chain, encouraging honest reporting and fair participation. This supports regenerative agriculture by promoting responsible resource use, improving soil and water management, empowering farmers economically, and strengthening community resilience. By fixing the root problem of unreliable data, AgriDatum helps build a healthier, more sustainable, and more equitable agricultural system.
 
 ### Solution Summary
-[Brief summary of your proposed solution]
+
+AgriDatum is an AI-powered web application built on Cardano that allows farmers to securely record, verify, and own their farming data on-chain.
+
+Farmers can register, upload harvest and farm activity data, and receive AI assistance for soil health tips, irrigation guidance, and better farm practices. Smart contracts enable transparent payments from NGOs or buyers based on verified records.
+
+By decentralizing data ownership and using AI + blockchain, AgriDatum builds a trusted environment where farmers grow sustainably, buyers make informed decisions, and communities benefit from accurate, tamper-proof agricultural data.
 
 ### Target Community
-[Describe the community or demographic you're serving]
+
+1. **Smallholder Farmers** - Farmers who need a simple way to document their activities, store truthful data, track consistency, and gain visibility for support, funding, and better market opportunities.
+
+2. **Farmer Cooperatives & Associations** - Groups that need organized records of members' activities, proof of work, and transparent data to support collective bargaining or project participation.
+
+3. **NGOs & Agricultural Development Organizations** - Organizations that require reliable, on-ground data to validate projects, monitor impact, and allocate resources responsibly.
+
+4. **Local Agricultural Extension Officers** - Agents who support farmers and need accurate data for monitoring farm activities, training outcomes, and community progress.
+
+5. **Agribusinesses & Buyers** - Market players who want verified farm data to ensure product authenticity, consistency, and traceability across the supply chain.
+
+6. **Government & Policy Institutions** - Local or national bodies that need accurate agricultural data to design programs, distribute aid, and understand farmer needs.
+
+7. **Youth Agripreneurs & Tech-Savvy Rural Innovators** - Young people helping communities digitize their farming processes or manage group documentation.
+
+8. **Impact Evaluators & Researchers** - People who analyze field data, measure social impact, or gather insights for agricultural reports and community development projects.
+
+9. **Microfinance Institutions & Grant Providers** - Credit providers that rely on verified farm activity data to make safer lending or funding decisions.
+
+10. **Community Leaders & Cooperatives Executives** - Leaders responsible for tracking community farming progress, verifying farmer claims, and ensuring transparency.
+
+## Phase 1: Core Infrastructure & MVP
+
+**Goal:** Deliver a fully functional, mobile-first web app that integrates AI guidance and on-chain data ownership, creating a strong digital foundation for transparent agriculture.
+
+### 1. Farmer Onboarding & Harvest Data On-Chain
+
+**Features:**
+- Farmers register using phone number or national ID, generating a unique farmer ID (DID)
+- Record harvest details such as crop type, quantity, location, and date
+- Data is stored immutably on the Cardano blockchain, ensuring traceability and farmer ownership
+- Farmers can view, download, or share their verified records for loans, insurance, or trade
+
+**Impact:** Establishes farmer data identity and trust across agricultural partners.
+
+### 2. AI Farming Assistant
+
+**Features:**
+
+AI chatbot helps by offering farming insights such as:
+- Market price updates
+- Planting and harvesting tips
+- Irrigation and drainage recommendations based on weather forecast
+- Pest and disease prevention alerts
+
+Also integrates with real-time weather and climate APIs to:
+- Advise on best irrigation schedules
+- Recommend drainage measures during heavy rain
+- Notify farmers of upcoming dry spells
+
+### Tech Stack (Phase 1)
+
+- **Frontend:** React.js + Tailwind CSS
+- **Backend:** Node.js + Express
+- **Blockchain Layer:** Aiken (for smart contracts), BlockFrost, sha256, ed25519
+- **API Integration:** The AI chatbot is a fine-tuned Gemini Model trained on African agricultural datasets integrated via Gemini API
+- **Database:** PostgreSQL with off-chain indexing
+
+### Deliverables (Phase 1)
+
+- Web app MVP
+- Farmer registration & data storage on-chain
+- AI assistant ready to offer farming insights
+- 50–100 pilot farmers onboarded across Nigerian localities
+
+Phase One is already live on Cardano thanks to BlockFrost, sha256 and ed25519. Full smart contract integration coming in Phase 2.
+
+## Phase 2: Smart Contracts & NGO Integration (Post Hackathon)
+
+**Goal:** Automate payments, enable transparent NGO impact tracking, and expand AI capabilities for financial and climate support.
+
+### 1. Smart Contract Payments
+
+Cardano-based smart contracts for secure and conditional payments. NGOs and buyers can release funds only after verified harvest delivery or AI-confirmed yield reporting. Enables fair trade and transparent disbursements.
+
+### 2. NGO Dashboard with Climate Impact Analytics
+
+NGOs can:
+- Track farmers' activity and yield progress
+- View irrigation and water usage patterns across regions
+- Fund irrigation or drainage projects via smart contracts
+- Measure impact (e.g., increased yield, reduced crop loss)
+
+**Impact:** Connects data ownership with sustainable funding. NGOs fund smarter, farmers grow stronger.
+
+### 3. Enhanced AI & IoT Integration
+
+AI models analyze historical rainfall, soil, and crop data to predict:
+- Drainage or flooding alerts
+- Future yield potential
+- Water scarcity risks
+
+Integration with affordable IoT soil sensors to automate data collection.
+
+### 4. API Integration Layer
+
+**Features:**
+- REST API enables NGOs, agribusinesses, and cooperatives to connect to AgriDatum
+- Allows automated data uploads, harvest verification, and AI analytics integration
+- Future support for IoT devices such as soil moisture or water sensors for data synchronization
+- Built for scalability and white-label adoption across regions
+
+## Revenue Model
+
+1. **Verification Fees:** Buyers pay small fees to verify crop authenticity
+2. **Data Insights Subscription:** NGOs and insurers pay for analytics dashboards
+3. **API Licensing:** Agritech startups pay for access to verified farm data
+4. **Smart Contract Fees:** 1–2% fee per verified trade or NGO disbursement
+5. **Premium AI Irrigation Assistant:** Paid tier for real-time irrigation insights (sponsored by NGOs or co-ops)
+
+## Impact Summary
+
+1. Empowers farmers with digital data ownership and AI-driven irrigation support
+2. Improves yield resilience through smart water management
+3. Builds transparency and trust between farmers, NGOs, and buyers
+4. Supports climate adaptation using blockchain-verified data
+
+## Project Resources
+
+- **Live Product:** [https://agri-datum-frontend-os.vercel.app/](https://agri-datum-frontend-os.vercel.app/)
+- **Video Demo:** [https://youtu.be/8BWOUq8TORQ](https://youtu.be/8BWOUq8TORQ)
+- **Pitch Deck:** [https://pitchdeck-hazel.vercel.app/](https://pitchdeck-hazel.vercel.app/)
+- **Learning Journey:** [https://drive.google.com/file/d/18pjnOJVdGP91oDeFNjHCwDIq2RzD0lfX/view?usp=drivesdk](https://drive.google.com/file/d/18pjnOJVdGP91oDeFNjHCwDIq2RzD0lfX/view?usp=drivesdk)
+- **Frontend Repository:** [https://github.com/oswebdevteam/AgriDatum-frontend](https://github.com/oswebdevteam/AgriDatum-frontend)
+- **Backend Repository:** [https://github.com/oswebdevteam/AgriDatum-backend](https://github.com/oswebdevteam/AgriDatum-backend)
 
 ## Documentation Pages
 
 Navigate through our action-learning journey:
 
-- **[Ground Truth](/team/OSWEB/ground-truth)** - Community research and interviews
-- **[Formulate Insight](/team/OSWEB/formulate-insight)** - Themes and patterns identified
-- **[Formulate Hypothesis](/team/OSWEB/formulate-hypothesis)** - Problem statement and thesis
-- **[Define Opportunity](/team/OSWEB/define-opportunity)** - Solution options explored
-- **[Journey Stories](/team/OSWEB/journey)** - Reflections and learning experiences
-- **[Final Solution](/team/OSWEB/final-solution)** - Our selected solution and implementation
-
-## Quick Links
-
-- [View all teams](/team)
-- [About the Hackathon](/team#about-the-hackathon)
-
----
-
-*Last updated: [Date]*
+- **[Ground Truth](/team/osweb/ground-truth)** - Community research and interviews
+- **[Formulate Insight](/team/osweb/formulate-insight)** - Themes and patterns identified
+- **[Formulate Hypothesis](/team/osweb/formulate-hypothesis)** - Problem statement and thesis
+- **[Define Opportunity](/team/osweb/define-opportunity)** - Solution options explored
+- **[Journey Stories](/team/osweb/journey)** - Reflections and learning experiences
+- **[Final Solution](/team/osweb/final-solution)** - Our selected solution and implementation
