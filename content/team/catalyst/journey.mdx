@@ -1,243 +1,87 @@
 ---
-title: Journey Stories
+title: Journey
 sidebarTitle: Journey
-description: Team Catalyst - Reflections and Learning Stories
+description: Five weeks from invisible merchants to working trust infrastructure
 ---
 
-# Journey Stories: Our Hackathon Experience
+# Journey: Building Trust Infrastructure in Five Weeks
 
-## Our Action-Learning Journey
+From November 15th through December 19th, 2025, Team Catalyst transformed ground truth research into working infrastructure that makes forty million invisible merchants visible to capital providers. This is the complete narrative of how we moved from market observations to deployed platform.
 
-Document your team's experiences, challenges, breakthroughs, and learnings throughout the CATS Hackathon.
+## Week One: Leaving the Building
 
-## Week-by-Week Reflections
+The hackathon began with an unusual instruction. Don't code. Don't design interfaces. Don't build features. Leave the building and discover ground truth. For a team eager to build, this felt counterintuitive. But we committed to the CATS methodology.
 
-### Week 1: Discovery Phase
-**Dates:** [Date range]
+We divided Lagos into zones. Some team members went to Yaba market, others to Computer Village, others to Oshodi motor parks. We approached merchants directly, explaining we were researching economic challenges facing small businesses. Most were skeptical initially. Why would students care about market trader problems? But when we demonstrated genuine listening without trying to sell anything, conversations opened up.
 
-**What we did:**
-- [Activity 1]
-- [Activity 2]
-- [Activity 3]
+The first merchant who shared his loan rejection story crystallized the problem for us. Five years of profitable operations. Consistent customer base. Zero access to formal banking because he couldn't provide land certificates as collateral. He'd turned to informal lenders at ten percent monthly interest. That single conversation revealed the pattern we'd encounter dozens more times.
 
-**Key learnings:**
-- [Learning 1]
-- [Learning 2]
+By the end of week one, we'd conducted over forty interviews across multiple market locations. We'd documented cash transaction flows. We'd witnessed the invisible economy operating at massive scale with zero digital footprint. We'd heard the same frustration expressed in different words: banks can't see us, so they think we don't exist.
 
-**Challenges faced:**
-- [Challenge 1]
-- [Challenge 2]
+## Week Two: Making Sense of Chaos
 
-**Highlights:**
-- [Highlight 1]
-- [Highlight 2]
+November 26th brought our first virtual session with the broader CATS community. We joined Google Meet expecting structured presentations. Instead we encountered productive chaos. Eleven teams, each with overwhelming amounts of field data, trying to identify patterns and throughlines.
 
----
+Team Catalyst presented our market trader findings. Other teams shared discoveries about waste collectors, farmers, students, and various other excluded populations. The problems seemed disconnected until someone identified the common thread: invisibility creating trust deficits.
 
-### Week 2: Research & Insights
-**Dates:** [Date range]
+That insight reframed everything. We weren't just observing financial exclusion. We were witnessing the complete absence of trust infrastructure for informal economies. Traditional banking couldn't assess creditworthiness because the mechanisms they relied on, audited books and physical collateral, didn't exist in informal commerce. The solution wasn't teaching merchants to keep better records. The solution was building new trust infrastructure suited to how they actually operate.
 
-**What we did:**
-- [Activity 1]
-- [Activity 2]
-- [Activity 3]
+The Saturday session on November 29th crystallized our approach. We realized trust could be constructed through multiple pathways. Merchants with existing sales could demonstrate credibility through performance data. Aspiring entrepreneurs without transaction history could access capital through community vouching. Both pathways would create digital trust profiles replacing physical collateral requirements.
 
-**Key learnings:**
-- [Learning 1]
-- [Learning 2]
+This became our hypothesis: if we make invisible economic activity visible and verifiable, rational investors will deploy capital at reasonable terms, unlocking the thirty two point two billion naira financing gap through market mechanisms rather than charity.
 
-**Challenges faced:**
-- [Challenge 1]
-- [Challenge 2]
+## Week Three: Infrastructure Not Application
 
-**Highlights:**
-- [Highlight 1]
-- [Highlight 2]
+With clear hypothesis in hand, we entered solution design. The team debated three approaches: direct lending where we'd be the capital provider, marketplace brokerage connecting merchants with existing lenders, or infrastructure enabling peer to peer investment.
 
----
+The infrastructure approach won for several reasons. It avoided capital constraints limiting scale. It created regenerative rather than extractive relationships. It addressed root causes by making merchants permanently visible rather than funding individual transactions. And critically, it was technically achievable within our timeline and skill set.
 
-### Week 3: Solution Design
-**Dates:** [Date range]
+We mapped the dual pathway trust system. Performance Trust would capture marketplace data for existing businesses. Human Trust would enable Agent sponsorship for aspiring entrepreneurs. Both would feed into unified investment marketplace with multi currency support and blockchain transparency.
 
-**What we did:**
-- [Activity 1]
-- [Activity 2]
-- [Activity 3]
+Architecture decisions flowed from infrastructure purpose. Blockchain integration wasn't decoration but fundamental to trust through on chain escrow and immutable audit trails. Multi currency support would access diverse capital pools. Clean API design would enable future integrations. Separate applications for investors, SMEs, and admins would serve distinct needs rather than forcing generic interfaces.
 
-**Key learnings:**
-- [Learning 1]
-- [Learning 2]
+By week three's end, we had detailed technical specifications, database schema designs, smart contract logic, and clear feature prioritization. We knew exactly what to build and why each component mattered.
 
-**Challenges faced:**
-- [Challenge 1]
-- [Challenge 2]
+## Week Four: Building the Foundation
 
-**Highlights:**
-- [Highlight 1]
-- [Highlight 2]
+December brought intense development. Backend team built Express API with Prisma ORM, implementing authentication, role based access control, wallet management, and investment tracking. Frontend team developed Next.js applications for each user type with Tailwind styling. Blockchain team wrote Aiken smart contracts for escrow and integrated Lucid for transaction building.
 
----
+We encountered technical challenges daily. Multi currency profit distribution required careful handling of exchange rates and smallest unit conversions to avoid precision loss. Blockchain integration demanded understanding Cardano's UTXO model and transaction construction patterns different from account based chains. Database transactions needed proper isolation to prevent race conditions during concurrent investments.
 
-### Week 4: Building & Testing
-**Dates:** [Date range]
+Testing revealed edge cases we hadn't anticipated. What happens when exchange rates change between investment creation and profit distribution? How do we handle partial funding where a request receives some investments but not full amount? How should the system behave if blockchain confirmation fails after database updates?
 
-**What we did:**
-- [Activity 1]
-- [Activity 2]
-- [Activity 3]
+We solved these through careful state management, atomic transactions, and clear error handling. Every financial operation became atomic, either completing fully or rolling back entirely. Exchange rates locked at investment time ensured fair profit distribution. Status fields tracked funding lifecycle enabling proper request handling at each stage.
 
-**Key learnings:**
-- [Learning 1]
-- [Learning 2]
+## Week Five: Integration and Demo Preparation
 
-**Challenges faced:**
-- [Challenge 1]
-- [Challenge 2]
+Final week focused on integration testing and demo preparation. Individual components worked but needed coordination. Investment flow from wallet deduction through database updates to blockchain escrow required perfect synchronization. Profit distribution from SME reporting through four way split calculations to investor wallet credits involved multiple database tables and careful transaction management.
 
-**Highlights:**
-- [Highlight 1]
-- [Highlight 2]
+We implemented end to end test scenarios. Investor deposits Naira, funds merchant request, merchant reports profits, system calculates distributions, all parties receive correct amounts. Same flow with ADA investment. Mixed currency investments in single request. Agent sponsored entrepreneur completing first funding cycle.
+
+Demo preparation meant selecting compelling user stories. We chose to demonstrate the invisible merchant problem through actual quotes from field research, show both trust pathways with example trust score calculations, walk through complete investment lifecycle from funding to profit distribution, and highlight blockchain transparency through transaction hash verification.
+
+December 19th arrived. Final Hack Day at NexTrend Hub with over one hundred attendees. We presented Catalyst not as app but as infrastructure. We showed working MVP with real blockchain transactions, demonstrated multi currency investment, explained four way split profit distribution, and articulated vision for ecosystem enabling thousands of fair lending relationships.
+
+## Key Learnings That Shaped Our Approach
+
+Several insights from the journey fundamentally shaped Catalyst's design and our understanding of regenerative innovation.
+
+First, ground truth research isn't optional preparation. It's the foundation. Every feature we built traced directly to merchant conversations. The dual pathway trust system emerged from recognizing different entrepreneur profiles. Multi currency support came from understanding capital concentration limits. Four way split addressed predatory lending patterns we witnessed. Without two weeks in markets, we'd have built wrong solutions for assumed problems.
+
+Second, infrastructure thinking requires different mindset than application building. Applications serve users. Infrastructure enables ecosystems. This distinction guided every technical decision from blockchain integration to API extensibility to transparent profit distribution. We optimized for network effects and long term sustainability over short term feature completeness.
+
+Third, regenerative systems align incentives rather than enforcing compliance. Our Agent commission structure creates natural quality control through reputation stakes. Profit sharing partnerships replace adversarial lending relationships. Transparent blockchain tracking eliminates need for invasive auditing. When incentives align, participants self organize toward ecosystem health.
+
+Fourth, complexity should be absorbed by infrastructure not imposed on users. Multi currency conversion, blockchain transaction construction, profit distribution calculations involve sophisticated logic. But SMEs just report profits and receive payments. Investors just browse opportunities and track returns. Agents just sponsor entrepreneurs and earn commissions. Infrastructure handles complexity enabling simple user experiences.
+
+## What We Built
+
+By hackathon conclusion, Catalyst operated as functional trust infrastructure with Phase 1 MVP features deployed. The platform processes multi currency investments across Naira, Cardano, and USDM stablecoin. Smart contracts manage on chain escrow with tested transaction flows. Profit distribution engine implements four way split with accurate calculations verified through extensive testing. KYC verification workflows enable compliant onboarding. Reputation scoring calculates preliminary trust metrics from platform engagement.
+
+The system has processed test investments with successful blockchain transactions and correct profit distributions. Architecture supports future marketplace integration for Performance Trust pathway and Agent sponsorship implementation for Human Trust pathway planned in Phase 2.
+
+Most importantly, we demonstrated that trust infrastructure enabling fair lending markets is technically feasible, economically viable through unit economics analysis, and aligned with regenerative principles that build rather than extract.
 
 ---
 
-[Add more weeks as needed]
-
-## Team Dynamics
-
-### What worked well:
-- [Team dynamic 1]
-- [Team dynamic 2]
-- [Team dynamic 3]
-
-### What we'd improve:
-- [Improvement area 1]
-- [Improvement area 2]
-
-### Roles & Contributions
-
-**[Member Name]:**  
-[Their key contributions and role]
-
-**[Member Name]:**  
-[Their key contributions and role]
-
-**[Member Name]:**  
-[Their key contributions and role]
-
-**[Member Name]:**  
-[Their key contributions and role]
-
-**[Member Name]:**  
-[Their key contributions and role]
-
-## Pivots & Changes
-
-### Major Pivots
-Did you change direction at any point?
-
-**Pivot 1:**  
-- **What changed:** [Description]
-- **Why:** [Reason]
-- **When:** [Date]
-- **Impact:** [Result of the pivot]
-
-**Pivot 2:**  
-[If applicable]
-
-## Mentorship & Support
-
-### Mentors We Worked With
-- **[Mentor Name]** - [How they helped]
-- **[Mentor Name]** - [How they helped]
-
-### Resources That Helped
-- [Resource 1]
-- [Resource 2]
-- [Resource 3]
-
-## Community Feedback
-
-### Feedback Sessions
-Document feedback you received from the community or potential users:
-
-**Session 1:**  
-- **Date:** [Date]
-- **Participants:** [Who provided feedback]
-- **Key feedback:**
-  - [Feedback point 1]
-  - [Feedback point 2]
-  - [Feedback point 3]
-- **Actions taken:** [What you changed based on feedback]
-
-**Session 2:**  
-[If applicable]
-
-## Breakthrough Moments
-
-### Our "Aha!" Moments
-1. **[Moment 1]:** [Description of breakthrough and impact]
-2. **[Moment 2]:** [Description of breakthrough and impact]
-3. **[Moment 3]:** [Description of breakthrough and impact]
-
-## Challenges Overcome
-
-### Major Obstacles
-1. **[Challenge 1]**
-   - Problem: [Description]
-   - Solution: [How you overcame it]
-   - Learning: [What you learned]
-
-2. **[Challenge 2]**
-   - Problem: [Description]
-   - Solution: [How you overcame it]
-   - Learning: [What you learned]
-
-3. **[Challenge 3]**
-   - Problem: [Description]
-   - Solution: [How you overcame it]
-   - Learning: [What you learned]
-
-## Personal Reflections
-
-### Individual Team Member Reflections
-
-**[Member 1 Name]:**  
-[Their personal reflection on the experience]
-
-**[Member 2 Name]:**  
-[Their personal reflection on the experience]
-
-**[Member 3 Name]:**  
-[Their personal reflection on the experience]
-
-**[Member 4 Name]:**  
-[Their personal reflection on the experience]
-
-**[Member 5 Name]:**  
-[Their personal reflection on the experience]
-
-## Skills Developed
-
-### Technical Skills
-- [Skill 1]
-- [Skill 2]
-- [Skill 3]
-
-### Soft Skills
-- [Skill 1]
-- [Skill 2]
-- [Skill 3]
-
-## What's Next?
-
-### Post-Hackathon Plans
-- [Plan 1]
-- [Plan 2]
-- [Plan 3]
-
-### Long-term Vision
-[Where do you see this project going after the hackathon?]
-
----
-
-*Last updated: [Date]*
+**Next:** [Final Solution](/team/catalyst/final-solution) - Technical architecture and implementation details

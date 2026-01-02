@@ -1,201 +1,75 @@
 ---
 title: Define Opportunity
 sidebarTitle: Define Opportunity
-description: Team Catalyst - Solution Options Explored
+description: How we chose trust infrastructure over simple lending
 ---
 
-# Define Opportunity: Solution Exploration
+# Define Opportunity: From Lending to Infrastructure
 
-## Objective
-Identify and document multiple feasible solutions that address the discovered problems before selecting a final project path.
+With a clear hypothesis about replacing physical collateral with digital trust, our team entered the solution exploration phase. The temptation was to build another lending platform, another microfinance app, another digital wallet. But our ground truth research and insights pointed toward something more fundamental: infrastructure rather than application.
 
-## Problem Recap
+## The Question That Framed Our Exploration
 
-**Our Problem Statement:**  
-[Copy your final problem statement from the previous phase]
+We asked ourselves: what do forty million invisible merchants need most? The obvious answer seemed to be loans. But our field research revealed something deeper. Merchants didn't just need money. They needed to become visible to capital providers. They needed mechanisms to prove creditworthiness without physical collateral. They needed trust infrastructure that didn't exist.
 
-[Link to Hypothesis](/team/catalyst/formulate-hypothesis)
+This reframing shifted our solution exploration from "what product can we build" to "what infrastructure needs to exist for fair lending markets to emerge."
 
-## Solution Brainstorming
+## Solution Pathways We Explored
 
-### Brainstorming Session Notes
-**Date:** [Date]  
-**Participants:** [Team members present]  
-**Duration:** [Time spent]
+We evaluated three distinct approaches during the week following our hypothesis formulation.
 
-**Ideas generated:** [Total number of ideas]
+The first pathway was a direct lending platform where Catalyst would function as the lender, deploying our own capital or capital raised from institutional partners to fund merchants directly. This model offered simplicity: merchants apply, we assess creditworthiness using whatever metrics we develop, we deploy funds, we collect repayments. It's how most fintech companies operate, and there's proven market demand.
 
-## Solution Options
+But this approach had fundamental limitations. It would require massive capital raising to achieve meaningful scale. We'd become the bottleneck, manually assessing every application and bearing all default risk. Most critically, it wouldn't solve the infrastructure problem. When Catalyst ran out of capital or faced defaults, merchants would still be invisible to other potential lenders. We'd create dependency rather than enablement.
 
-### Solution Option 1: [Solution Name]
+The second pathway was a marketplace connecting merchants with existing lenders, positioning Catalyst as matchmaking infrastructure. We'd build the trust scoring system, verify business data, and present qualified merchants to banks and microfinance institutions who'd actually deploy capital. This distributed risk while leveraging existing capital pools.
 
-**Description:**  
-[Detailed description of this solution approach]
+This approach avoided the capital bottleneck but introduced different challenges. Traditional lenders operate with fixed processes, regulatory constraints, and risk appetite shaped by decades of banking culture. Convincing them to lend based on our novel trust scores rather than collateral would require extensive relationship building, regulatory navigation, and proof of concept success that might take years to establish.
 
-**How it addresses the problem:**  
-[Explanation of how this solves the identified problem]
+The third pathway, which ultimately became Catalyst, was building trust infrastructure that enables peer to peer and institutional investment directly. We'd create the mechanisms for making merchants visible, the platforms for capital deployment across multiple currencies, the smart contracts for transparent fund custody, and the profit distribution engines for fair value sharing. But we wouldn't be the lender. We'd be the infrastructure enabling thousands of investment relationships.
 
-**Key Features:**
-- [Feature 1]
-- [Feature 2]
-- [Feature 3]
-- [Feature 4]
+## Why Infrastructure Won
 
-**Technology Stack:**
-- [Technology 1]
-- [Technology 2]
-- [Technology 3]
+Several factors drove our decision toward infrastructure over direct lending or marketplace brokerage.
 
-**Pros:**
-- ✅ [Advantage 1]
-- ✅ [Advantage 2]
-- ✅ [Advantage 3]
+First was scalability without capital constraints. Infrastructure scales through network effects rather than balance sheet growth. Every successful funding relationship increases platform credibility, attracting more investors and merchants without requiring us to raise proportional capital. A lending platform's growth is limited by capital availability. Infrastructure growth is limited by adoption, which we could influence through product quality and community building.
 
-**Cons:**
-- ❌ [Disadvantage 1]
-- ❌ [Disadvantage 2]
-- ❌ [Disadvantage 3]
+Second was regenerative impact. Direct lending or brokerage creates zero sum dynamics: we succeed by capturing value from transactions. Infrastructure creates positive sum dynamics: all participants benefit when the system works well, and our success depends on ecosystem health rather than transaction extraction. This aligned with CATS methodology principles about building regenerative rather than extractive systems.
 
-**Feasibility Score:** [X/10]  
-**Impact Score:** [X/10]  
-**Innovation Score:** [X/10]
+Third was addressing root causes rather than symptoms. Merchants don't just need one loan from one platform. They need sustained access to growth capital from diverse sources at competitive terms. Infrastructure that makes them visible enables ongoing capital relationships, not just single transactions. It solves the visibility problem permanently rather than providing temporary financing.
 
----
+Fourth was technical feasibility within hackathon constraints. Building full lending compliance, capital management, and default recovery processes would require months and legal expertise we didn't possess. Building trust scoring, marketplace interfaces, and blockchain integration was technically challenging but achievable within three weeks with our team's skills.
 
-### Solution Option 2: [Solution Name]
+## The Two Path Trust System Emerges
 
-**Description:**  
-[Detailed description of this solution approach]
+During solution exploration, we grappled with the cold start problem. New merchants joining the platform would have zero trust score, zero transaction history, and zero visibility. How could they access their first investment before building reputation?
 
-**How it addresses the problem:**  
-[Explanation]
+This challenge led to our dual pathway insight. Merchants with existing businesses could follow the Performance Trust pathway, connecting marketplace accounts and payment processors to generate trust scores from actual sales data. But aspiring entrepreneurs without business history needed a different on-ramp.
 
-**Key Features:**
-- [Feature 1]
-- [Feature 2]
-- [Feature 3]
-- [Feature 4]
+The Human Trust pathway emerged from recognizing that local community members often possess valuable information about individual capability that no credit algorithm could generate. If we enabled established community members to sponsor aspiring entrepreneurs, vouching for their character and potential, that sponsorship could bootstrap initial credibility. Proper incentive design through commission structures would ensure Agents carefully selected promising individuals rather than blindly vouching for anyone.
 
-**Technology Stack:**
-- [Technology 1]
-- [Technology 2]
-- [Technology 3]
+This two path system solved multiple problems simultaneously. It addressed cold start challenges, created community organizing opportunities through the Agent role, enabled youth entrepreneurship access, and recognized diverse forms of credibility rather than imposing single pathways.
 
-**Pros:**
-- ✅ [Advantage 1]
-- ✅ [Advantage 2]
-- ✅ [Advantage 3]
+## Technology Choices Flow from Purpose
 
-**Cons:**
-- ❌ [Disadvantage 1]
-- ❌ [Disadvantage 2]
-- ❌ [Disadvantage 3]
+Understanding that we were building infrastructure rather than just an application shaped every technical decision.
 
-**Feasibility Score:** [X/10]  
-**Impact Score:** [X/10]  
-**Innovation Score:** [X/10]
+Blockchain integration wasn't optional decoration. It was fundamental to trust infrastructure. On chain escrow ensures funds remain secure until conditions are met, eliminating platform custody risk and providing immutable audit trails. Multi currency support across Naira, Cardano, and stablecoins would access diverse capital pools rather than limiting to local fiat.
+
+Database design prioritized audit trails and transparency over operational convenience. Every financial transaction, trust score change, and profit distribution needed permanent, queryable records. PostgreSQL with careful schema design provided this foundation.
+
+API architecture emphasized extensibility. The platform needed to integrate with future marketplace APIs, payment processors, and KYC services as we scaled beyond MVP. Clean RESTful design with role based access control created flexibility for growth.
+
+Multi application architecture separated investor, SME, and admin experiences rather than forcing everyone through generic interfaces. Each user type had distinct needs and workflows that purpose built applications could serve better than one size fits all platforms.
+
+These weren't arbitrary technology choices. They flowed directly from understanding Catalyst as infrastructure enabling an ecosystem rather than a product serving users.
+
+## The Opportunity Defined
+
+By the end of solution exploration, we'd defined our opportunity precisely. We would build digital trust infrastructure that makes Nigeria's forty million invisible merchants visible to capital providers. This infrastructure would operate through dual pathways addressing different entrepreneur profiles, deploy capital across multiple currencies with blockchain transparency, and distribute value fairly through profit sharing rather than extractive interest.
+
+We wouldn't be a lender. We wouldn't be a broker. We'd be infrastructure. And infrastructure, once established, enables economic activity at scale far beyond what any single platform could facilitate directly.
 
 ---
 
-### Solution Option 3: [Solution Name]
-
-**Description:**  
-[Detailed description of this solution approach]
-
-**How it addresses the problem:**  
-[Explanation]
-
-**Key Features:**
-- [Feature 1]
-- [Feature 2]
-- [Feature 3]
-- [Feature 4]
-
-**Technology Stack:**
-- [Technology 1]
-- [Technology 2]
-- [Technology 3]
-
-**Pros:**
-- ✅ [Advantage 1]
-- ✅ [Advantage 2]
-- ✅ [Advantage 3]
-
-**Cons:**
-- ❌ [Disadvantage 1]
-- ❌ [Disadvantage 2]
-- ❌ [Disadvantage 3]
-
-**Feasibility Score:** [X/10]  
-**Impact Score:** [X/10]  
-**Innovation Score:** [X/10]
-
----
-
-[Add more solution options as needed]
-
-## Evaluation Criteria
-
-### Scoring Matrix
-
-| Solution | Feasibility | Impact | Innovation | Total |
-|----------|-------------|--------|------------|-------|
-| Option 1 | [Score]/10  | [Score]/10 | [Score]/10 | [Total]/30 |
-| Option 2 | [Score]/10  | [Score]/10 | [Score]/10 | [Total]/30 |
-| Option 3 | [Score]/10  | [Score]/10 | [Score]/10 | [Total]/30 |
-
-### Evaluation Factors
-
-**Feasibility** - Can we build this in the hackathon timeframe?  
-**Impact** - How many people will benefit? How significant is the benefit?  
-**Innovation** - How novel is this approach? Does it use emerging tech effectively?
-
-## Selected Solution
-
-### Our Choice: [Selected Solution Name]
-
-**Reason for selection:**  
-[Explain why your team selected this solution over the others]
-
-**Key decision factors:**
-1. [Factor 1]
-2. [Factor 2]
-3. [Factor 3]
-
-**Trade-offs accepted:**
-- [Trade-off 1]
-- [Trade-off 2]
-
-**Mitigation strategies for cons:**
-- [How you'll address disadvantage 1]
-- [How you'll address disadvantage 2]
-
-## Implementation Roadmap
-
-### Phase 1: MVP (Minimum Viable Product)
-**Timeline:** [Timeframe]  
-**Features:**
-- [Core feature 1]
-- [Core feature 2]
-- [Core feature 3]
-
-### Phase 2: Enhancement (If time permits)
-**Timeline:** [Timeframe]  
-**Features:**
-- [Enhanced feature 1]
-- [Enhanced feature 2]
-
-### Phase 3: Future Vision (Post-Hackathon)
-**Features:**
-- [Future feature 1]
-- [Future feature 2]
-- [Future feature 3]
-
-## Next Steps
-
-1. Document the journey and reflections: [Journey Stories](/team/catalyst/journey)
-2. Build and document final solution: [Final Solution](/team/catalyst/final-solution)
-
----
-
-*Last updated: [Date]*
+**Next:** [Journey](/team/catalyst/journey) - The complete narrative of building Catalyst
