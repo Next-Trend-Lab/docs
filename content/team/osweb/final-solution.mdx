@@ -42,18 +42,36 @@ Farmers receive personalized farming advice powered by a fine-tuned Gemini Model
 
 **Frontend:** React.js with Tailwind CSS for a mobile-first, responsive interface  
 **Backend:** Node.js with Express for API management  
-**Blockchain:** Cardano using Aiken for smart contracts, BlockFrost for API access, sha256 for hashing, ed25519 for digital signatures  
+**Blockchain:** Cardano using Aiken for smart contracts, BlockFrost for API access, sha256 for hashing, ed25519 for key pair generation signatures  
 **AI:** Gemini API fine-tuned on African agricultural datasets  
 **Database:** PostgreSQL with off-chain indexing for quick data retrieval
 
 ### Deliverables (Phase 1)
 
-1. Web app MVP live and accessible to farmers
-2. Farmer registration and harvest data storage on Cardano
-3. AI farming assistant operational and accessible
-4. 50–100 pilot farmers onboarded in Akwa Ibom State
+Web app MVP live and accessible to farmers, farmer registration and harvest data storage on Cardano, AI farming assistant operational and accessible, 50–100 pilot farmers onboarded in Nigeria.
 
 **Note:** Phase 1 is live on Cardano. Visit the platform to explore the features.
+
+### End to End Flow
+
+![End to End Flow Diagram](/team/osweb/end-to-end-flow.png)
+
+The process is designed to be seamless for farmers, who only interact with a simple interface while all blockchain complexity is handled behind the scenes. They don't need to know anything about Cardano, ADA, or wallets. All they see is a simple form and a "Save" button. When they submit crop records, the app signs the payload and attaches it to a blockchain transaction. The transaction carries their harvest info in the metadata section. That's what is being indexed and shown in the explorer. So anyone with the explorer link to a particular transaction can open it and see the farmer's inputs under metadata, tied to the farmer address.
+
+The whole point is, farmers interact only with a straightforward mobile interface, while the platform invisibly manages cryptographic operations, blockchain submissions, and compliance controls.
+
+**Step-by-Step Explanation of End to End Flow**
+
+1. **Frontend:** The app derives a seedInput using the farmer's phone number and PIN.
+2. **Frontend:** A farmer address is computed by hashing the public key with SHA‑256 and appending a prefix (addr_test1 or addr1). This string is used only for metadata tagging and indexing. It is not a spendable Cardano payment address and cannot be used to send or receive ADA. The frontend then calls /api/keys/generate with harvestData and this farmer address.
+3. **Backend:** The backend generates a unique Ed25519 keypair (public key and private key).
+4. **Backend:** The backend signs the harvestData using the private key.
+5. **Backend:** The backend returns the public key and signature to the frontend. The private key is never returned.
+6. **Frontend:** The frontend submits the signed harvest data to /api/harvest/submit along with the signature.
+7. **Backend:** The backend verifies the signature to ensure authenticity and integrity.
+8. **Backend:** The backend submits the verified record to the Cardano blockchain and saves it to the database. All gas fees are sponsored by AgriDatum.
+
+This flow ensures secure, verifiable, and user-friendly data submission for farmers, with blockchain indexing handled entirely by the system.
 
 ### Phase 2: Smart Contracts & NGO Integration
 
@@ -79,66 +97,115 @@ Integrate IoT devices such as soil moisture sensors and weather stations for rea
 
 Offer an API for NGOs, agribusinesses, and cooperatives to integrate AgriDatum data into their systems. Features include REST API for data access, automated data upload pipelines for extension workers, and support for third-party IoT devices and data sources to ensure scalability and interoperability.
 
-## Revenue Model
+## Secure Data Governance Architecture for Agridatum
+
+![Data Governance Architecture](/team/osweb/data-governance-architecture.png)
+
+At the heart of Agridatum's security model is identity and authentication. Farmers log in using familiar credentials such as a phone number and PIN which will be further reinforced by one time passwords for sensitive actions such as data exportation. Once authenticated, the platform issues JWT tokens stored in secure httpOnly cookies, preventing exposure to cross‑site scripting attacks. Behind the scenes, each farmer is associated with an Ed25519 keypair generated securely on the device or backend. The private key never leaves its secure enclave, ensuring that harvest data can be signed locally without risk of compromise. For indexing purposes, a farmer address is computed by hashing the public key with SHA‑256 and appending a prefix. This is a Cardano address but is explicitly not spendable; it exists solely for metadata tagging and record grouping.
+
+Data protection is enforced at multiple layers. All communication between the app and backend services is encrypted using TLS, preventing interception or tampering. Databases and storage systems employ AES‑256 encryption at rest, with keys managed by a dedicated key management service. Personally identifiable information such as phone numbers is stored separately from harvest records, linked only through pseudonymous identifiers. This separation reduces the risk of correlation and supports compliance with data minimization principles. On‑chain metadata contains only compact proofs or hashes of harvest records, while full details remain encrypted off‑chain, ensuring transparency without exposing sensitive information.
+
+Transaction integrity is guaranteed through canonical payloads and digital signatures. Each harvest submission is serialized in CBOR format with a domain‑specific tag to prevent replay attacks. The payload is signed with the farmer's private key, and the backend verifies the signature before accepting the record. Once validated, the backend submits the transaction to the Cardano blockchain, attaching metadata under an application‑specific label. All transaction fees are sponsored by Agridatum, removing complexity for farmers while ensuring that every record is immutably stored and auditable.
+
+Compliance is embedded throughout the architecture. Consent is captured for data collection, and retention policies define how long records are stored. Farmers retain the right to request deletion of off‑chain data, while on‑chain hashes remain as immutable proofs. Role‑based access control will enforce least privilege for administrators and operators, while audit logging captures every transaction, permission change, and administrative action. These logs provide forensic evidence for regulators and support transparent reporting.
+
+Operational resilience is achieved through monitoring, incident response, and disaster recovery. Sponsor wallets are continuously monitored to prevent transaction failures, while anomaly detection alerts administrators to suspicious activity. Encrypted backups and tested restore procedures ensure continuity in case of system disruption. By combining cryptographic integrity, layered defenses, and regulatory alignment, Agridatum delivers a platform that is both farmer‑friendly and institution‑grade. Farmers see only a simple "record saved" message, but beneath the surface lies a sophisticated architecture that secures their data, complies with regulations, and leverages the immutability of Cardano to build trust in agricultural records.
+
+## Cardano Implementation in Agridatum
+
+![Cardano Implementation Diagram](/team/osweb/cardano-implementation.png)
+
+Agridatum's blockchain integration is built on Cardano, chosen for its scalability, security, and sustainability. The platform is currently deployed on the pre‑prod testnet, allowing rigorous testing of all components before mainnet migration. At the core of the implementation are Ed25519 key pairs, which provide secure digital signatures for harvest data. Farmers' submissions are signed locally, ensuring authenticity and integrity, while the backend verifies signatures before committing records.
+
+For unique farmer addresses, the system employs SHA‑256 hashing of public keys with a network prefix. They are Cardano addresses but are explicitly not spendable; they serve only for metadata tagging and indexing (as stated before).
+
+In Phase 2, Agridatum introduces smart contracts written in Aiken, Cardano's modern contract language. These contracts, completed as of January 4, enforce business logic such as validation of harvest records, conditional access, and automated compliance checks and the key phase 2 features already stated. The platform also, most importantly, integrates BlockFrost, a Cardano API service, to query the blockchain, submit transactions, manage transactions, and retrieve metadata efficiently. This enables seamless interaction between the backend and the blockchain, powering dashboards, audits, and analytics. Together, these components create a secure, farmer‑friendly system with enterprise‑grade transparency.
+
+## Future Revenue Model
 
 AgriDatum will be sustainable through five revenue streams:
 
-1. **Freemium model** – Basic features free for farmers; advanced insights and analytics available via subscription for NGOs and cooperatives.
-2. **Transaction fees** – Small fee on smart contract-based payments between farmers and buyers.
-3. **NGO partnerships** – Licensing the platform to NGOs and development organizations for resource distribution tracking.
-4. **Data insights sales** – Aggregated, anonymized agricultural insights sold to research institutions, policymakers, and agribusinesses.
-5. **Hardware partnerships** – Revenue from IoT sensor partnerships where farmers purchase discounted sensors that integrate directly with AgriDatum.
+**Freemium model** – Basic features free for farmers; advanced insights and analytics available via subscription for NGOs and cooperatives.
+
+**Transaction fees** – Small fee on smart contract-based payments between farmers and buyers.
+
+**NGO partnerships** – Licensing the platform to NGOs and development organizations for resource distribution tracking.
+
+**Data insights sales** – Aggregated, anonymized agricultural insights sold to research institutions, policymakers, and agribusinesses.
+
+**Hardware partnerships** – Revenue from IoT sensor partnerships where farmers purchase discounted sensors that integrate directly with AgriDatum.
 
 ## Impact Summary
 
 AgriDatum creates measurable impact across four dimensions:
 
-1. **For Farmers:** Digital identity and work history, access to AI-powered farming guidance, ability to share verifiable records with buyers and NGOs, reduced fraud and increased trust with support organizations.
-2. **For NGOs:** Transparent, verifiable data for resource distribution, reduced administrative overhead in identifying beneficiaries, measurable impact tracking for funding partners.
-3. **For Buyers & Cooperatives:** Access to verified produce data, simplified supply chain traceability, stronger relationships with trusted farmer networks.
-4. **For Communities:** Increased transparency and trust in agricultural markets, stronger collective voice for farmers, better alignment between farmers and support organizations.
+**For Farmers:** Digital identity and work history, access to AI-powered farming guidance, ability to share verifiable records with buyers and NGOs, reduced fraud and increased trust with support organizations.
+
+**For NGOs:** Transparent, verifiable data for resource distribution, reduced administrative overhead in identifying beneficiaries, measurable impact tracking for funding partners.
+
+**For Buyers & Cooperatives:** Access to verified produce data, simplified supply chain traceability, stronger relationships with trusted farmer networks.
+
+**For Communities:** Increased transparency and trust in agricultural markets, stronger collective voice for farmers, better alignment between farmers and support organizations.
 
 ## Deployment
 
 ### Live Demo & Project Links
 
-- **Live Platform:** [https://agridatum.vercel.app](https://agridatum.vercel.app)
-- **Frontend Repository:** [https://github.com/osweb/agridatum-frontend](https://github.com/osweb/agridatum-frontend)
-- **Backend Repository:** [https://github.com/osweb/agridatum-backend](https://github.com/osweb/agridatum-backend)
-- **Video Demo:** [Watch AgriDatum Demo](https://youtube.com/agridatum-demo)
-- **Pitch Deck:** [View Pitch Deck](https://drive.google.com/agridatum-pitch)
-- **Learning Journey Video:** [Watch Our Journey](https://youtube.com/osweb-journey)
+**Live Platform:** https://agri-datum-frontend-os.vercel.app/
+
+**Frontend Repository:** https://github.com/osweb/agridatum-frontend
+
+**Backend Repository:** https://github.com/osweb/agridatum-backend
+
+**Video Demo:** https://youtu.be/8BWOUq8TORQ
+
+**Pitch Deck:** https://pitchdeck-hazel.vercel.app/
+
+**Learning Journey Video:** https://drive.google.com/file/d/18pjnOJVdGP91oDeFNjHCwDIq2RzD0lfX/view?usp=drivesdk
 
 ### Deployment Status
 
-- ✅ Frontend deployed on Vercel
-- ✅ Backend deployed on Render
-- ✅ Cardano integration live on testnet
-- ⏳ Smart contracts planned for mainnet (Phase 2)
-- ✅ Domain configured (agridatum.vercel.app)
+✅ Frontend deployed on Vercel
+
+✅ Backend deployed on Vercel
+
+✅ Cardano integration live on testnet
+
+⏳ Smart contracts planned for mainnet (Phase 2)
+
+✅ Domain configured (https://agri-datum-frontend-os.vercel.app/)
 
 ## Roadmap
 
-### Phase 1: MVP (Completed ✅)
+### Phase 1: MVP (Completed)
 
-- Farmer onboarding and unique ID generation
-- Harvest data recording on Cardano blockchain
-- AI farming assistant for market prices, planting tips, and irrigation guidance
-- Mobile-first interface with simple signup flow
+Farmer onboarding and unique ID generation
 
-### Phase 2: Post-Hackathon (Next 3-6 Months)
+Harvest data recording on Cardano blockchain
 
-- NGO dashboard for activity tracking and resource distribution verification
-- Smart contract-based conditional payments
-- Enhanced AI with predictive insights and pest outbreak alerts
-- Basic IoT sensor integration for soil moisture and weather data
+AI farming assistant for market prices, planting tips, and irrigation guidance
 
-### Phase 3: Scale (6-12 Months)
+Mobile-first interface with simple signup flow
 
-- Expand to 10,000+ farmers across Nigeria
-- API layer for third-party integrations (NGOs, cooperatives, agribusinesses)
-- Full mainnet deployment with production-ready smart contracts
-- Partnerships with government extension services for broader adoption
+### Phase 2: Post-Hackathon (Next 6-12 Months)
+
+NGO dashboard for activity tracking and resource distribution verification
+
+Smart contract-based conditional payments
+
+Enhanced AI with predictive insights and pest outbreak alerts
+
+Basic IoT sensor integration for soil moisture and weather data
+
+### Phase 3: Scale (18-24 Months)
+
+Expand to 10,000+ farmers across Nigeria
+
+API layer for third-party integrations (NGOs, cooperatives, agribusinesses)
+
+Full mainnet deployment with production-ready smart contracts
+
+Partnerships with government extension services for broader adoption
 
 ## Team Contributions
 
@@ -146,54 +213,74 @@ AgriDatum creates measurable impact across four dimensions:
 
 **Glory Archibong (Project Manager):**
 
-- Led coordination and timeline management
-- Organized community research and interviews
-- Facilitated team communication and alignment
+Led coordination and timeline management
+
+Organized community research and interviews
+
+Facilitated team communication and alignment
 
 **Dominion Ekpuk (Frontend & Blockchain Lead):**
 
-- Built React-based interface with Tailwind CSS
-- Integrated Cardano using Aiken and BlockFrost
-- Implemented farmer dashboard and data visualization
+Built interface React, Typescript, and Tailwind CSS
+
+Integrated Cardano using Aiken and BlockFrost
+
+Implemented farmer record view and data visualization
 
 **Favour Sunday (Backend & Blockchain Developer):**
 
-- Built Node.js backend with Express
-- Integrated PostgreSQL for off-chain indexing
-- Developed API layer for AI assistant and data retrieval
+Built Node.js backend with Express
+
+Integrated PostgreSQL for off-chain indexing
+
+Developed API layer for AI assistant and data retrieval
 
 **Peace Essien (UI/UX Designer):**
 
-- Designed user flows and wireframes
-- Created farmer-friendly interface reflecting cultural preferences
-- Conducted usability testing with community members
+Designed user flows and wireframes
+
+Created farmer-friendly interface reflecting cultural preferences
+
+Conducted usability testing with community members
 
 **Ola (Community Liaison):**
 
-- Connected team with farmers for research and testing
-- Organized field visits and feedback sessions
-- Facilitated onboarding for pilot farmers
+Connected team with farmers for research and testing
+
+Organized field visits and feedback sessions
+
+Facilitated onboarding for pilot farmers
 
 ## Acknowledgments
 
 ### Thank You
 
-- **Mentors:** Delfina for insight formulation guidance, Tabs for UI simplification feedback, NextTrend Hub for process support.
-- **Community Participants:** Farmers, market women, and NGO volunteers in Akwa Ibom State who shared their stories and tested the platform.
-- **CATS Hackathon Organizers:** For creating a space to build solutions grounded in real community needs.
-- **Cardano Foundation & Blockchain Partners:** For technical resources and documentation support.
+**Mentors:** Delfina for insight formulation guidance, Tabs for UI simplification feedback, NextTrend Hub for process support.
+
+**Community Participants:** Farmers, market women, and NGO volunteers in Akwa Ibom State who shared their stories and tested the platform.
+
+**CATS Hackathon Organizers:** For creating a space to build solutions grounded in real community needs.
+
+**Cardano Foundation & Blockchain Partners:** For technical resources and documentation support.
 
 ## Contact & Demo
 
 ### Try Our Solution
 
-- **Live Platform:** [https://agridatum.vercel.app](https://agridatum.vercel.app)
-- **Video Demo:** [Watch on YouTube](https://youtube.com/agridatum-demo)
-- **Pitch Deck:** [View Presentation](https://drive.google.com/agridatum-pitch)
+**Live Platform:** https://agri-datum-frontend-os.vercel.app/
+
+**Video Demo (Please Read Description on Youtube):** https://youtu.be/8BWOUq8TORQ
+
+**Pitch Deck:** https://pitchdeck-hazel.vercel.app/
 
 ### Get in Touch
 
-- **Team Email:** team@agridatum.org
-- **GitHub:** [github.com/osweb](https://github.com/osweb)
+**Team Email:** oswebdevteam@gmail.com
+
+**GitHub (Frontend):** https://github.com/oswebdevteam/AgriDatum-frontend
+
+**GitHub (Backend):** https://github.com/oswebdevteam/AgriDatum-backend
+
+**Regenerative Learning Journey (Video talking about our learning journey and product):** https://drive.google.com/file/d/18pjnOJVdGP91oDeFNjHCwDIq2RzD0lfX/view?usp=drivesdk
 
 **[Back to Team Overview](/team/osweb)**
